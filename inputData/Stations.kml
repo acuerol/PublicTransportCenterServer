@@ -1,0 +1,813 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2'>
+	<Document>
+		<name>Stations</name>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Andres Sanin</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.48313641548157,3.443691624435684,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>7 de Agosto</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.48716509342194,3.4453167840797336,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>El Trebol</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.49593591690063,3.4435925618965038,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Villa Colombia</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.49889975786209,3.443927232595575,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Chapinero</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.50227665901184,3.444352933554817,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Atanasio Girardot</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.5083384513855,3.44489376091398,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Floresta</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.51463896036148,3.4453194614409455,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Belalcazar</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52075976133347,3.4442003237988565,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>San Pascual</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52748137712479,3.4427197401599106,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>San Bosco</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.5326526761055,3.442294038470554,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Santa Librada</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.53733044862747,3.4395229567871004,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Manzana del Saber</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.54103457927704,3.434936598102485,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Estadio</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.54322326183319,3.4318415298160914,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Tequendama</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.54705345630646,3.4235147825174583,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Lido</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.54837310314178,3.41882124963372,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Unidad Deportiva</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.54845356941223,3.4148666692991423,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Plaza de Toros</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.54748529195786,3.4096938287333036,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Pampalinda</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.54684960842133,3.4038248165109275,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Refugio</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.54651165008545,3.3986760140244,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Caldas</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.54594033956528,3.3940573300663406,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Capri</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.54505789279938,3.388038281548637,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Melendez</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.54285579919815,3.3771166117624687,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Buitrera</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.5401628613472,3.3726183153582583,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Univalle</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.5367403626442,3.370835056378627,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Universidades</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52918457984924,3.366987382851612,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Sucre</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52644336223602,3.4442217427134607,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Petecuy</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52789980173111,3.4490891785502202,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>San Pedro</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.53006702661514,3.454425123302833,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Torre de Cali</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.53022527694702,3.4568240129283185,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Versalles</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52696639299393,3.461201435388743,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Las Americas</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52523100376129,3.4635735347684715,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Prados del Norte</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.51951789855957,3.4744540588603923,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Vipasa</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.51693493127823,3.4785904456853105,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Alamos</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.51324689388275,3.484504510263204,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Menga</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.5084832906723,3.4893342574772745,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Ermita</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.53162002563477,3.453458604675299,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Plaza de Caycedo</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.53134375810623,3.4524813756997803,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Centro</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.53019577264786,3.448609932672926,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Santa Rosa</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52980417013168,3.447319448159962,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Fray Damian</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52885735034943,3.4435711429677527,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Cien Palos</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52276068925858,3.4398495967868667,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Primitivo</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.5177047252655,3.4373971166825563,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Santa Monica</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.51394426822662,3.4347491807580366,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Villanueva</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.51027500629425,3.4321440758607653,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Conquistadores</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.50538802146912,3.4271801667053485,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Troncal Unida</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.49444729089737,3.424773170197622,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Nuevo Latir</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.4868512749672,3.418489247578367,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Amanecer</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.49084508419037,3.4216164881867925,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>San Nicolas</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52567088603973,3.4585107285637577,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Piloto</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52244418859482,3.460074284504345,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Rio Cali</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.52523100376129,3.4604223359894233,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Fatima</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.5173077583313,3.462853338180934,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Manzanares</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.51324421167374,3.4662240676758866,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Popular</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.51084899902344,3.469343119614909,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Salomia</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.50664865970612,3.473739225124496,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Flora Industrial</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.50218814611435,3.4782477554273608,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#icon-959-4186F0</styleUrl>
+			<name>Chiminangos</name>
+			<ExtendedData>
+				<Data name='string'>
+					<displayName>state</displayName>
+					<value>1</value>
+				</Data>
+			</ExtendedData>
+			<description><![CDATA[state: true]]></description>
+			<Point>
+				<coordinates>-76.498162150383,3.481457794444251,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Style id='icon-959-4186F0'>
+			<IconStyle>
+				<color>ffF08641</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/959-wht-circle-blank.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+	</Document>
+</kml>
