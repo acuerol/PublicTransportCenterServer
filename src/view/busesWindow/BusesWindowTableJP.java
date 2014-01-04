@@ -21,7 +21,7 @@ public class BusesWindowTableJP extends JPanel {
 	private JTable busesJT;
 	private CentralSystem centralSystem;
 	private JScrollPane scroll;
-	private BusesWindowTableModel tableModel;
+	private BusesWindowJTableModel tableModel;
 	
 	public BusesWindowTableJP()
 	{
@@ -43,7 +43,7 @@ public class BusesWindowTableJP extends JPanel {
 		Object[][] data = new Object[1][8];
 		String[] columnsNames = {"id", "Driver", "Plate", "Route", "Next Stop Station","State","Speed", "Position"};
 		
-		tableModel = new BusesWindowTableModel(columnsNames, data);
+		tableModel = new BusesWindowJTableModel(columnsNames, data);
 		busesJT = new JTable(tableModel);
 		scroll = new JScrollPane(busesJT);
 		busesJT.setFillsViewportHeight(true);
@@ -62,5 +62,9 @@ public class BusesWindowTableJP extends JPanel {
 		}
 		
 		return "";
+	}
+
+	public BusesWindowJTableModel getTableModel() {
+		return tableModel;
 	}
 }

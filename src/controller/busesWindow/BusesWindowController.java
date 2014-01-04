@@ -5,7 +5,7 @@ import javax.swing.JTable;
 import model.PublicTransportCenter;
 import util.Alert;
 import view.busesWindow.BusesWindowJF;
-import view.busesWindow.BusesWindowTableModel;
+import view.busesWindow.BusesWindowJTableModel;
 
 /**
  * 
@@ -44,14 +44,13 @@ public class BusesWindowController {
 	}
 	
 	public void refreshTable(int selectedRow)
-	{	
-		JTable busesJT = busesWindow.getTableJP().getBusesJT(); 
+	{			
+		JTable busesJT = busesWindow.getTableJP().getBusesJT();
+		BusesWindowJTableModel tableModel = busesWindow.getTableJP().getTableModel();
 		Object[][] data = generateData();
-		String[] columnsNames = {"id", "Driver", "Plate", "Route", "Next Stop Station","State","Speed", "Position"};
-		BusesWindowTableModel busesWindowTableModel = new BusesWindowTableModel(columnsNames, data);
 		
-		//Excepcion muy rara por seleccionar celda mientras refresca.
-		busesJT.setModel(busesWindowTableModel);
+		tableModel.setData(data);
+		busesJT.repaint();
 		
 		busesJT.setColumnSelectionInterval(0, 0);
 		

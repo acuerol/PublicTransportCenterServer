@@ -29,6 +29,8 @@ public class Bus implements Serializable {
 	private int movementState;
 	private double idealSpeed;
 	private Object nextNode;
+	private double acceleration;
+	
 	/**
 	 * Creates a Bus with all parameters.
 	 * @param id an identifier for the Bus instance
@@ -59,6 +61,20 @@ public class Bus implements Serializable {
 	
 	
 	
+	/**
+	 * @return the acceleration
+	 */
+	public double getAcceleration() {
+		return acceleration;
+	}
+
+	/**
+	 * @param acceleration the acceleration to set
+	 */
+	public void setAcceleration(double acceleration) {
+		this.acceleration = acceleration;
+	}
+
 	@Override
 	public boolean equals(Object obj)
 	{
@@ -113,8 +129,7 @@ public class Bus implements Serializable {
 	 * Returns the id of the Bus instance.
 	 * @return the id of the Bus instance.
 	 */
-	public String getId()
-	{
+	public String getId() {
 		return id;
 	}
 	
@@ -122,8 +137,7 @@ public class Bus implements Serializable {
 	 * Return a Station instance that represent the next stop station.
 	 * @return the next stop station.
 	 */
-	public Station getNextStopStation()
-	{
+	public Station getNextStopStation() {
 		return nextStopStation;
 	}
 	
