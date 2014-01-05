@@ -80,7 +80,20 @@ public class UtilCalc {
 	public static double round(double number, int digits)
 	{
 		int digitsNum = (int) Math.pow(10, digits);
-		number = Math.round((number) * digitsNum) / Math.pow(10, digitsNum);
+		number = Math.rint(number * digitsNum) / digitsNum;
+		
 		return number;
+	}
+	
+	public static boolean compareDouble(double a, double b)
+	{
+		final double EPSILON = 1E-2;
+		
+		if(Math.abs(a - b) < EPSILON)
+		{
+			return true;
+		}
+		
+		return false;
 	}
 }

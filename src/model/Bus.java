@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 import util.UtilCalc;
@@ -20,6 +21,8 @@ public class Bus implements Serializable {
 	private String id;
 	private Station nextStopStation;
 	private Date nextStopTime;
+	private Object nextNode;
+	private ArrayList<Object> nextFourNodes;
 	private String plate;
 	private double position;
 	private Route route;
@@ -28,7 +31,6 @@ public class Bus implements Serializable {
 	private boolean state;
 	private int movementState;
 	private double idealSpeed;
-	private Object nextNode;
 	private double acceleration;
 	
 	/**
@@ -59,7 +61,19 @@ public class Bus implements Serializable {
 		nextStopTime = new Date();
 	}
 	
-	
+	/**
+	 * @return the nextFourNodes
+	 */
+	public Object getNextFourNodes() {
+		return nextFourNodes;
+	}
+
+	/**
+	 * @param nextFourNodes the nextFourNodes to set
+	 */
+	public void setNextFourNodes(ArrayList<Object> nextFourNodes) {
+		this.nextFourNodes = nextFourNodes;
+	}
 	
 	/**
 	 * @return the acceleration

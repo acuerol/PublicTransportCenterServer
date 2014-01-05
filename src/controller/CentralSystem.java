@@ -13,6 +13,7 @@ import controller.threads.ListenReportConnectionThread;
 import controller.threads.RefreshTableThread;
 import controller.threads.SemaphoresStateThread;
 import util.Alert;
+import util.UpdateBuses;
 import view.connectionWindow.ConnectionWindowJF;
 import model.Bus;
 import model.PublicTransportCenter;
@@ -122,18 +123,15 @@ public class CentralSystem {
 	public PublicTransportCenter generateNewSystem() {
 		pTC = PublicTransportCenter.getPublicTransportCenter();
 		
-		for (Bus bus : pTC.getBuses()) {
-			bus.setNextNode(bus.getRoute().getWay().getNextNode(bus.getPosition()));
-			bus.setNextStopStation(bus.getRoute().getWay().getNextStopStation(bus.getPosition()));
+		for (Bus bus : pTC.getBuses())
+		{
+			bus.setNextNode(UpdateBuses.getNextNode(bus));
+			bus.setNextStopStation(UpdateBuses.getNextStopStation(bus));
+			bus.setNextFourNodes(UpdateBuses.getNextFourNodes(bus));
+			
+			bus.setAcceleration(UpdateBuses.getOptimalAcceleration(bus));
 		}
-		
-		for (Bus bus : pTC.getBuses()) {
-			if(bus.getNextStopStation() != null)
-			{
-				System.out.println(bus.getId() + " -- " + bus.getNextStopStation().getName());
-			}
-		}
-		
+
 		return pTC;
 	}
 
