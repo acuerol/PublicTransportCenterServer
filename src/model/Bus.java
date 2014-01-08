@@ -11,8 +11,10 @@ import util.UtilCalc;
  * @author Alexis Cuero Losada
  *
  */
-public class Bus implements Serializable {
+public class Bus implements Serializable, Comparable<Bus> {
 
+	public static final int STATION_STOP_TIME = 8;
+	
 	/**
 	 * The Bus serialVersionUID
 	 */
@@ -32,6 +34,8 @@ public class Bus implements Serializable {
 	private int movementState;
 	private double idealSpeed;
 	private double acceleration;
+	private Object stopNode;
+	private int stopTime;
 	
 	/**
 	 * Creates a Bus with all parameters.
@@ -62,6 +66,34 @@ public class Bus implements Serializable {
 	}
 	
 	/**
+	 * @return the stop
+	 */
+	public Object getStopNode() {
+		return stopNode;
+	}
+
+	/**
+	 * @param stop the stop to set
+	 */
+	public void setStopNode(Object stopNode) {
+		this.stopNode = stopNode;
+	}
+
+	/**
+	 * @return the stopTime
+	 */
+	public int getStopTime() {
+		return stopTime;
+	}
+
+	/**
+	 * @param stopTime the stopTime to set
+	 */
+	public void setStopTime(int stopTime) {
+		this.stopTime = stopTime;
+	}
+
+	/**
 	 * @return the nextFourNodes
 	 */
 	public Object getNextFourNodes() {
@@ -88,27 +120,6 @@ public class Bus implements Serializable {
 	public void setAcceleration(double acceleration) {
 		this.acceleration = acceleration;
 	}
-
-	@Override
-	public boolean equals(Object obj)
-	{
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		
-		Bus other = (Bus) obj;
-
-		if (plate == null) {
-			if (other.id != null)
-				return false;
-		} else if (!plate.equals(other.id))
-			return false;
-		
-		return true;
-	}
 	
 	public double getIdealSpeed() {
 		return idealSpeed;
@@ -122,7 +133,7 @@ public class Bus implements Serializable {
 		this.startTime = startTime;
 	}
 
-	public double getMovementState() {
+	public int getMovementState() {
 		return movementState;
 	}
 
@@ -292,21 +303,50 @@ public class Bus implements Serializable {
 	{
 		if(nextStopStation != null && driver != null)
 		{
-			Object[] array = {id, driver.getName() + driver.getLastName(), plate, route.getName(), nextStopStation.getName(), state, UtilCalc.round(speed, 2), UtilCalc.round(position, 1)};
+			Object[] array = {id, driver.getName() + driver.getLastName(), plate, route.getName(), nextStopStation.getName(), state, UtilCalc.round(speed * 3.6, 2) , UtilCalc.round(position, 4)};
 			return array;
 		}
 		else
 		{
 			if (driver != null) {
-				Object[] array = {id, driver.getName(), plate, route.getName(), "Unknowed", state, UtilCalc.round(speed, 2), UtilCalc.round(position, 1)};
+				Object[] array = {id, driver.getName(), plate, route.getName(), "Unknowed", state, UtilCalc.round(speed * 3.6, 2) , UtilCalc.round(position, 4)};
 				return array;
 			}
 			else
 			{
-				Object[] array = {id, "Not asigned", plate, route.getName(), "Unknowed", state, UtilCalc.round(speed, 2), UtilCalc.round(position, 1)};
+				Object[] array = {id, "Not asigned", plate, route.getName(), "Unknowed", state, UtilCalc.round(speed * 3.6, 2) , UtilCalc.round(position, 4)};
 				return array;
 			}
 		}
+	}
+	
+	public Object getNextNode() {
+		return nextNode;
+	}
+
+	public void setNextNode(Object nextNode) {
+		this.nextNode = nextNode;
+	}
+	
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		
+		Bus other = (Bus) obj;
+
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		
+		return true;
 	}
 	
 	@Override
@@ -322,11 +362,18 @@ public class Bus implements Serializable {
 				*/
 	}
 
-	public Object getNextNode() {
-		return nextNode;
-	}
-
-	public void setNextNode(Object nextNode) {
-		this.nextNode = nextNode;
+	@Override
+	public int compareTo(Bus other) {
+		if(this.getPosition() < other.getPosition())
+		{
+			return -1;
+		}
+		
+		if(this.getPosition() > other.getPosition())
+		{
+			return 1;
+		}
+		
+		return 0;
 	}
 }

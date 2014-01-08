@@ -13,6 +13,7 @@ import controller.threads.ListenReportConnectionThread;
 import controller.threads.RefreshTableThread;
 import controller.threads.SemaphoresStateThread;
 import util.Alert;
+import util.PhysicalCalculations;
 import util.UpdateBuses;
 import view.connectionWindow.ConnectionWindowJF;
 import model.Bus;
@@ -38,8 +39,7 @@ public class CentralSystem {
 		pTC = PublicTransportCenter.getPublicTransportCenter();
 	}
 	
-	public static synchronized CentralSystem getCentralSystem()
-	{
+	public static synchronized CentralSystem getCentralSystem() {
 		if(centralSystem == null)
 		{
 			centralSystem = new CentralSystem();
@@ -48,65 +48,54 @@ public class CentralSystem {
 		return centralSystem;
 	}
 	
-	public void createSemaphoresStateThread()
-	{
+	public void createSemaphoresStateThread() {
 		semaphoresStateThread = new SemaphoresStateThread();
 		semaphoresStateThread.start();
 	}
 	
-	public void createListenReportConnectionThread()
-	{
+	public void createListenReportConnectionThread() {
 		listenReportConnectionThread = new ListenReportConnectionThread();
 		listenReportConnectionThread.start();
 		listenReportConnectionThread.startToReport();
 	}
 	
-	public void createParametersWindowController()
-	{
+	public void createParametersWindowController() {
 		parametersWindowController = new ParametersWindowController();
 		parametersWindowController.setMouseListener();
 	}
 	
-	public ParametersWindowController getWindowParametersController()
-	{	
+	public ParametersWindowController getWindowParametersController() {	
 		return parametersWindowController;
 	}
 	
-	public void createConnectionThread()
-	{
+	public void createConnectionThread() {
 		connectionThread = new InitialValuesRequestThread();
 		connectionThread.start();
 	}
 	
-	public void startListenInitialValuesRequest()
-	{
+	public void startListenInitialValuesRequest() {
 		connectionThread.startlistenInitialValuesRequest();
 	}
 	
-	public void createControllerConnectionWindow()
-	{
+	public void createControllerConnectionWindow() {
 		controllerConnectionWindow = new ConnectionWindowController();
 		controllerConnectionWindow.getConnectionWindow().setJButtonsMouseListeners();
 	}
 	
-	public void createBusesWindowController()
-	{
+	public void createBusesWindowController() {
 		busesWindowController = new BusesWindowController();
 		busesWindowController.setJButtonsMouseListener();
 	}
 	
-	public ConnectionWindowController getControllerConnectionWindow()
-	{
+	public ConnectionWindowController getControllerConnectionWindow() {
 		return controllerConnectionWindow;
 	}
 	
-	public void createRefreshTableThread()
-	{
+	public void createRefreshTableThread() {
 		refreshTableThread = new RefreshTableThread();
 	}
 	
-	public void startRefreshTableThread()
-	{
+	public void startRefreshTableThread() {
 		refreshTableThread.start();
 	}
 	
@@ -127,9 +116,19 @@ public class CentralSystem {
 		{
 			bus.setNextNode(UpdateBuses.getNextNode(bus));
 			bus.setNextStopStation(UpdateBuses.getNextStopStation(bus));
-			bus.setNextFourNodes(UpdateBuses.getNextFourNodes(bus));
 			
-			bus.setAcceleration(UpdateBuses.getOptimalAcceleration(bus));
+			bus.setStopNode(UpdateBuses.getStopNode(bus));
+			
+//			double acceleration = UpdateBuses.getOptimalAcceleration(bus);
+//			
+//			if(acceleration != Double.NaN)
+//			{
+//				bus.setAcceleration(acceleration);
+//			}
+//			
+//			System.out.println(bus.getId() + " - " + bus.getMovementState());
+			
+			bus.setAcceleration(PhysicalCalculations.ADEQUATE_ACCELERATION);
 		}
 
 		return pTC;

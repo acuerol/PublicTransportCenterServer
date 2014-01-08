@@ -1,8 +1,12 @@
 package util;
 
 import java.awt.geom.Point2D;
+import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 
+import javax.swing.text.html.MinimalHTMLWriter;
+
+import controller.CentralSystem;
 import model.Bus;
 import model.Semaphore;
 import model.Station;
@@ -10,6 +14,7 @@ import model.Station;
 public class UpdateBuses {
 
 	public static final Station UNKNOWED = new Station("Unknowed", new Point2D.Double(), false); 
+	public static final double STOP_TOLERANCE = 2e-2;
 	
 	public static Object getNextNode(Bus bus) {
 		double busDistance = bus.getPosition();
@@ -134,32 +139,87 @@ public class UpdateBuses {
 	}
 
 	public static double getOptimalAcceleration(Bus bus) {
-		
 		Object nextNode = bus.getNextNode(); 
-		double acceleration = 0;
+		double nodeDistance = getNodeDistance(bus);
 		
 		if(nextNode instanceof Semaphore)
 		{
-			double avaibleTime = 0.0;
-			Semaphore semaphore = ((Semaphore)(nextNode));
-			avaibleTime = PhysicalCalculations.getTimeAvaible(semaphore);
+			double avaibleTime = PhysicalCalculations.getTimeAvaible(((Semaphore)(nextNode)));
 			
-			if(semaphore.getState())
+			switch (PhysicalCalculations.conditionToPass(bus, nodeDistance, avaibleTime))
 			{
-				if(PhysicalCalculations.isPossiblePassGreen(bus, getNodeDistance(bus), avaibleTime))
-				{
-					
-				}
+			case 1:
+				bus.setMovementState(1);
+				return PhysicalCalculations.ADEQUATE_ACCELERATION;
+			case 2:
+				bus.setMovementState(2);
+				return 0;
+			case 3:
+				bus.setMovementState(3);
+				return PhysicalCalculations.bestAcceleration(bus, nodeDistance, avaibleTime);
+			case 4:
+				bus.setMovementState(0);
+				return PhysicalCalculations.ADEQUATE_ACCELERATION;
 			}
-			else
+			
+			switch (PhysicalCalculations.conditionToBreaking(bus, nodeDistance, avaibleTime)) 
 			{
-				if(PhysicalCalculations.isPossiblePassRed(bus, getNodeDistance(bus), avaibleTime))
-				{
-					
-				}
+			case 0:
+				bus.setMovementState(0);
+				return PhysicalCalculations.ADEQUATE_ACCELERATION;
+			case 4:
+				bus.setMovementState(5);
+				return 0;
+			case 5:
+				bus.setMovementState(6);
+				return PhysicalCalculations.bestBreaking(bus, nodeDistance);
+			case 6:
+				bus.setMovementState(7);
+				return 0;
+			}
+			
+			return PhysicalCalculations.ADEQUATE_ACCELERATION;
+		}
+//		else
+//		{
+//			if(!nextNode.equals(UNKNOWED))
+//			{
+//				double bestBreaking = PhysicalCalculations.bestBreaking(bus, nodeDistance);
+//				
+//				if(bestBreaking < PhysicalCalculations.MIN_BREAKING)
+//				{
+//					int codeBalance = PhysicalCalculations.isBalanced(bus);
+//					
+//					switch (codeBalance)
+//					{
+//					case -1:
+//						return PhysicalCalculations.MIN_BREAKING;
+//					case 0:
+//						return 0;
+//					case 1:
+//						return PhysicalCalculations.ADEQUATE_ACCELERATION;
+//					case 2:
+//						return 0;
+//					}
+//				}
+//				
+//				return bestBreaking;
+//			}
+//		}
+		
+		return Double.NaN;
+	}
+
+	public static Object getStopNode(Bus bus) {
+		
+		if(bus.getSpeed() < 1)
+		{
+			if(getNodeDistance(bus) < STOP_TOLERANCE)
+			{
+				return bus.getNextNode();
 			}
 		}
 		
-		return 0;
+		return "Is running";
 	}
 }

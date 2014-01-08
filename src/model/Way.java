@@ -1,8 +1,9 @@
 package model;
 
-import java.awt.geom.Point2D;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import util.UtilCalc;
 
 /**
  * 
@@ -82,6 +83,24 @@ public class Way implements Serializable {
 		this.nodes = nodes;
 	}
 
+	public String toString(String name)
+	{
+		String str = name + ": ";
+		for (int i = 0 ; i < nodes.size() ; i++)
+		{
+			if(nodes.get(i) instanceof Station)
+			{
+				str += (" --" + UtilCalc.round(distances.get(i), 2) + "-- " + ((Station)(nodes.get(i))).getName());
+			}
+			else
+			{
+				str += (" --" + UtilCalc.round(distances.get(i), 2) + "-- " + ((Semaphore)(nodes.get(i))).getID());
+			}
+		}
+		
+		return str;
+	}
+	
 	@Override
 	public String toString() {
 		return "Way [ distances = " + distances + ", nodes = "
