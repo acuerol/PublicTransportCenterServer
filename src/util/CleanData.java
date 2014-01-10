@@ -136,7 +136,9 @@ public class CleanData {
 		DocumentBuilderFactory docBuilderFactory;
 		DocumentBuilder docBuilder;
 		Document document = null;
-		try {
+		
+		try
+		{
 			 
 			docBuilderFactory  = DocumentBuilderFactory.newInstance();
 		    docBuilder = docBuilderFactory.newDocumentBuilder();
@@ -144,10 +146,11 @@ public class CleanData {
 		    document = docBuilder.parse(new File(pathName));
 		    document.getDocumentElement().normalize();
 		    
-		} catch (ParserConfigurationException e) {
+		} catch (ParserConfigurationException e) 
+		{
 			System.err.println("XML Format error.");
 			return false;
-		}catch (IOException e) {
+		} catch (IOException e) {
 			System.err.println("Write/Read error.");
 			return false;
 		} catch (SAXException e) {
@@ -174,14 +177,14 @@ public class CleanData {
 	    		sCoordinates.add(coordinates.item(j).getTextContent().split(","));
 	    		sTimes.add(new String[] {times.item(k).getTextContent(), times.item(++k).getTextContent()});
 	    		
-	    		if(sTimes.get(sTimes.size()-1)[0].equals(""))
+	    		if(sTimes.get(sTimes.size()-1)[0].equals("") || sTimes.get(sTimes.size()-1)[0].equals("1"))
 	    		{
-	    			sTimes.get(sTimes.size()-1)[0] = "0";
+	    			sTimes.get(sTimes.size()-1)[0] = "30.0";
 	    		}
 	    		
-	    		if(sTimes.get(sTimes.size()-1)[1].equals(""))
+	    		if(sTimes.get(sTimes.size()-1)[1].equals("") || sTimes.get(sTimes.size()-1)[1].equals("1"))
 	    		{
-	    			sTimes.get(sTimes.size()-1)[1] = "0";
+	    			sTimes.get(sTimes.size()-1)[1] = "30.0";
 	    		}
 	    		
 	    		k++;

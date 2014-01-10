@@ -110,6 +110,7 @@ public class CentralSystem {
 	}
 
 	public PublicTransportCenter generateNewSystem() {
+		
 		pTC = PublicTransportCenter.getPublicTransportCenter();
 		
 		for (Bus bus : pTC.getBuses())
@@ -119,16 +120,14 @@ public class CentralSystem {
 			
 			bus.setStopNode(UpdateBuses.getStopNode(bus));
 			
-//			double acceleration = UpdateBuses.getOptimalAcceleration(bus);
-//			
-//			if(acceleration != Double.NaN)
-//			{
-//				bus.setAcceleration(acceleration);
-//			}
-//			
-//			System.out.println(bus.getId() + " - " + bus.getMovementState());
+			double acceleration = UpdateBuses.getOptimalAcceleration(bus);
 			
-			bus.setAcceleration(PhysicalCalculations.ADEQUATE_ACCELERATION);
+			if(acceleration != Double.NaN)
+			{
+				bus.setAcceleration(acceleration);
+			}
+			
+//			bus.setAcceleration(PhysicalCalculations.ADEQUATE_ACCELERATION);
 		}
 
 		return pTC;

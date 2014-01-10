@@ -46,7 +46,7 @@ public class ListenReportConnection {
 			{
 				//System.out.println("***Report receive succefuly...");
 				this.pTC = pTC;
-				this.pTC.setPublicTransportCenter(pTC);
+				PublicTransportCenter.refreshBusesFromClient(pTC);
 //				System.out.println("Before generate System: " + pTC.getBuses().size());
 				
 				sendData.writeObject("true");
@@ -74,6 +74,6 @@ public class ListenReportConnection {
 			return null;
 		}
 		
-		return pTC;
+		return this.pTC;
 	}
 }

@@ -15,7 +15,7 @@ public class PhysicalCalculations {
 	public static final double ADEQUATE_ACCELERATION = 1.18;
 	public static final double MIN_ACCELERATION = 0.7;
 	
-	public static final double MAX_BREAKING = -2.45;
+	public static final double MAX_BREAKING = -3.0;
 	public static final double ADEQUATE_BREAKING = -1.84;
 	public static final double MIN_BREAKING = -1.0;
 
@@ -26,52 +26,44 @@ public class PhysicalCalculations {
 	
 	private static PublicTransportCenter pTC;
 	
-	public static double getTimeAvaible(Semaphore semaphore) {
+	public static int getTimeAvaible(Semaphore semaphore) {
 		if(semaphore.getState())
 		{
 			return (semaphore.getTimeGreen() - semaphore.getTime());
-		}
-		else
+		} else
 		{
-			return (semaphore.getTimeRed() - semaphore.getTime());
+			return 0;
 		}
 	}
 	
 	public static int conditionToPass(Bus bus, double nodeDistance, double avaibleTime) {
 		double timeUniformSpeed = 0.0;
 		
-		if(bus.getSpeed() == 0 && bus.getMovementState() == 0)
+		if(bus.getSpeed() != 0)
 		{
-			return 4;
-		}
-		else
-		{
-			if(bus.getSpeed() != 0)
-			{
-				timeUniformSpeed = (SEMAPHORE_TOLERANCE + nodeDistance) / bus.getSpeed();
-			}
+			timeUniformSpeed = (SEMAPHORE_TOLERANCE + nodeDistance) / bus.getSpeed();
 		}
 		
-		if(timeUniformSpeed <= avaibleTime)
+		if(avaibleTime > 0)
 		{
-			return 1;
-		}else
-		{
-			double bestAcceleration = bestAcceleration(bus, nodeDistance, avaibleTime);
-			
-			if(bestAcceleration < ADEQUATE_ACCELERATION)
+			if(timeUniformSpeed < avaibleTime)
 			{
-				return 2;
+				return 1;
 			}else
 			{
+				double bestAcceleration = bestAcceleration(bus, nodeDistance, avaibleTime);
+				
 				if(bestAcceleration > ADEQUATE_ACCELERATION && bestAcceleration < MAX_ACCELERATION)
+				{
+					return 2;
+				} else
 				{
 					return 3;
 				}
 			}
 		}
 		
-		return 0;
+		return 4;
 	}
 	
 	public static double bestAcceleration(Bus bus, double nodeDistance, double avaibleTime) {
@@ -83,8 +75,8 @@ public class PhysicalCalculations {
 		for (double a = MIN_ACCELERATION ; a < MAX_ACCELERATION ; a += 1e-2)
 		{
 			time1 = ((MAX_SPEED - bus.getSpeed()) / a);
-			distance1 = bus.getPosition() + (Math.pow(MAX_SPEED, 2) - Math.pow(bus.getSpeed(), 2));
-			distance2 = nodeDistance - distance1;
+			distance1 = bus.getPosition() * 1000 + (Math.pow(MAX_SPEED, 2) - Math.pow(bus.getSpeed(), 2));
+			distance2 = nodeDistance - distance1 - SEMAPHORE_TOLERANCE * 1000;
 			time2 = distance2 / MAX_SPEED;
 			
 			if((time1 + time2) < avaibleTime)
@@ -99,33 +91,41 @@ public class PhysicalCalculations {
 	public static int conditionToBreaking(Bus bus, double nodeDistance, double avaibleTime) {
 		double bestBreaking = bestBreaking(bus, nodeDistance);
 		
-		if(bestBreaking < ADEQUATE_BREAKING)
+		if(bestBreaking < 0)
 		{
-			if(bus.getSpeed() < MAX_SPEED)
+			if(bestBreaking > MIN_BREAKING)
 			{
-				return 0;
-			}
-			
-			return 4;
-		}else
-		{
-			if(bestBreaking > ADEQUATE_BREAKING && bestBreaking < MAX_BREAKING)
+				System.out.println(UtilCalc.round(bestBreaking, 2) + " > Min Breaking");
+				return 1;
+			}else
 			{
-				return 5;
+				if(bestBreaking < MIN_BREAKING && bestBreaking > MAX_BREAKING)
+				{
+					System.out.println(UtilCalc.round(bestBreaking, 2) + " < Min Breaking > Max Breaking");
+					return 3;
+				} else
+				{
+					System.out.println(bestBreaking + " > Max Breaking (Pass)");
+					return 4;
+				}
 			}
 		}
 		
-		return 6;
+		return 3;
 	}
 	
 	public static double bestBreaking(Bus bus, double nodeDistance) {
-		double acceleration = (-1 * Math.pow(bus.getSpeed(), 2)) / (2 * nodeDistance);
+		double bestBreaking = (-1 * Math.pow(bus.getSpeed(), 2)) / (2 * nodeDistance * 1000 - SEMAPHORE_TOLERANCE * 1000);
 		
-		return acceleration;
+		if(bestBreaking < 0)
+		{
+			return bestBreaking;
+		}
+		
+		return 0;
 	}
 
 	public static int isBalanced(Bus bus) {
-		pTC = PublicTransportCenter.getPublicTransportCenter();
 		ArrayList<Bus> buses = pTC.getBuses();
 		int index = buses.indexOf(bus);
 		Bus nextBus = null;

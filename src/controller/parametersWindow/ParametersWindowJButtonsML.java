@@ -43,6 +43,7 @@ public class ParametersWindowJButtonsML implements MouseListener {
 		
 		centralSystem.createControllerConnectionWindow();
 		centralSystem.createListenReportConnectionThread();
+		centralSystem.createSemaphoresStateThread();
 		parametersWindowController.getWindowParameters().dispose();
 	}
 	

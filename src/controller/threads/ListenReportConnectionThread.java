@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 import controller.CentralSystem;
+import model.PublicTransportCenter;
+import model.Semaphore;
 import model.connection.ListenReportConnection;
 
 public class ListenReportConnectionThread extends Thread {
@@ -32,7 +34,7 @@ public class ListenReportConnectionThread extends Thread {
 		{
 			if(isReporting)
 			{
-				reportConnection.readReportSystem();
+				PublicTransportCenter.refreshBusesFromClient(reportConnection.readReportSystem());
 			}
 		}
 	}

@@ -337,7 +337,8 @@ public class IOFiles {
 	{
 		File file = new File(pathName);
 		
-		try {
+		try
+		{
 			if(!file.exists())
 			{
 				file.createNewFile();

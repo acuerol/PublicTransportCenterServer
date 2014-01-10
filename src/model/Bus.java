@@ -63,6 +63,7 @@ public class Bus implements Serializable, Comparable<Bus> {
 		driver = new Driver("Not assigned", "Not assigned", "Not assigned");
 		startTime = new Date();
 		nextStopTime = new Date();
+		stopTime = 0;
 	}
 	
 	/**
@@ -303,18 +304,18 @@ public class Bus implements Serializable, Comparable<Bus> {
 	{
 		if(nextStopStation != null && driver != null)
 		{
-			Object[] array = {id, driver.getName() + driver.getLastName(), plate, route.getName(), nextStopStation.getName(), state, UtilCalc.round(speed * 3.6, 2) , UtilCalc.round(position, 4)};
+			Object[] array = {id, driver.getName() + driver.getLastName(), plate, route.getName(), nextStopStation.getName(), state, UtilCalc.round(speed * 3.6, 2) , UtilCalc.round(position, 4), nextNode, movementState, UtilCalc.round(acceleration, 2)};
 			return array;
 		}
 		else
 		{
 			if (driver != null) {
-				Object[] array = {id, driver.getName(), plate, route.getName(), "Unknowed", state, UtilCalc.round(speed * 3.6, 2) , UtilCalc.round(position, 4)};
+				Object[] array = {id, driver.getName(), plate, route.getName(), "Unknowed", state, UtilCalc.round(speed * 3.6, 2) , UtilCalc.round(position, 4), nextNode, movementState, UtilCalc.round(acceleration, 2)};
 				return array;
 			}
 			else
 			{
-				Object[] array = {id, "Not asigned", plate, route.getName(), "Unknowed", state, UtilCalc.round(speed * 3.6, 2) , UtilCalc.round(position, 4)};
+				Object[] array = {id, "Not asigned", plate, route.getName(), "Unknowed", state, UtilCalc.round(speed * 3.6, 2) , UtilCalc.round(position, 4), nextNode, movementState, UtilCalc.round(acceleration, 2)};
 				return array;
 			}
 		}

@@ -21,7 +21,7 @@ public class BusesWindowJF extends JFrame {
 	public BusesWindowJF()
 	{
 		setTitle("Buses Information Server");
-		setSize(400, 400);
+		setSize(600, 400);
 		setApareance();
 		setLocationRelativeTo(null);
 		setVisible(true);

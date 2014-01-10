@@ -64,9 +64,66 @@ public class PublicTransportCenter implements Serializable {
 		search = new Search();
 	}
 	
-	public void setPublicTransportCenter(PublicTransportCenter pTC)
+	public static synchronized void setPublicTransportCenter(PublicTransportCenter pTC)
 	{
 		PublicTransportCenter.pTC = pTC;
+	}
+	
+	public static synchronized void refreshSemaphores(PublicTransportCenter pTC)
+	{
+		PublicTransportCenter.pTC.setSemaphores(pTC.getSemaphores());
+	}
+	
+	public static synchronized void refreshBuses(PublicTransportCenter pTC)
+	{
+		PublicTransportCenter.pTC.setBuses(pTC.getBuses());
+	}
+	
+	public static synchronized void refreshBusesFromServer(PublicTransportCenter pTC)
+	{
+		ArrayList<Bus> buses = pTC.getBuses();
+		int index = 0;
+		
+		for (Bus bus : buses)
+		{
+			index = PublicTransportCenter.pTC.getBuses().indexOf(bus);
+			
+			if(index == -1)
+			{
+				PublicTransportCenter.pTC.getBuses().add(bus);
+			}else
+			{
+				PublicTransportCenter.pTC.getBuses().get(index).setAcceleration(bus.getAcceleration());
+				PublicTransportCenter.pTC.getBuses().get(index).setMovementState(bus.getMovementState());
+				PublicTransportCenter.pTC.getBuses().get(index).setNextStopStation(bus.getNextStopStation());
+				PublicTransportCenter.pTC.getBuses().get(index).setNextNode(bus.getNextNode());
+			}
+		}
+		
+		PublicTransportCenter.pTC.setRoutes(pTC.getRoutes());
+		PublicTransportCenter.pTC.setSemaphores(pTC.getSemaphores());
+	}
+	
+	public static synchronized void refreshBusesFromClient(PublicTransportCenter pTC)
+	{
+		ArrayList<Bus> buses = pTC.getBuses();
+		int index = 0;
+		
+		for (Bus bus : buses)
+		{
+			index = PublicTransportCenter.pTC.getBuses().indexOf(bus);
+			
+			if(index == -1)
+			{
+				PublicTransportCenter.pTC.getBuses().add(bus);
+			}else
+			{
+				PublicTransportCenter.pTC.getBuses().get(index).setSpeed(bus.getSpeed());
+				PublicTransportCenter.pTC.getBuses().get(index).setPosition(bus.getPosition());
+				PublicTransportCenter.pTC.getBuses().get(index).setMovementState(bus.getMovementState());
+				PublicTransportCenter.pTC.getBuses().get(index).setStopTime(bus.getStopTime());
+			}
+		}
 	}
 	
 	@Override
@@ -105,6 +162,9 @@ public class PublicTransportCenter implements Serializable {
 				}
 			}
 		}
+		
+		distance = UtilCalc.round(distance, 2);
+
 		return distance;
 	}
 	
