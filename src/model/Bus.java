@@ -315,7 +315,7 @@ public class Bus implements Serializable, Comparable<Bus> {
 			}
 			else
 			{
-				Object[] array = {id, "Not asigned", plate, route.getName(), "Unknowed", state, UtilCalc.round(speed * 3.6, 2) , UtilCalc.round(position, 4), nextNode, movementState, UtilCalc.round(acceleration, 2)};
+				Object[] array = {id, "Not asigned", plate, route.getName(), nextStopStation.getName(), state, UtilCalc.round(speed * 3.6, 2) , UtilCalc.round(position, 4), nextNode, movementState, UtilCalc.round(acceleration, 2)};
 				return array;
 			}
 		}

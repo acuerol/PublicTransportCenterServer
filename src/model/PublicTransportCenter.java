@@ -122,6 +122,7 @@ public class PublicTransportCenter implements Serializable {
 				PublicTransportCenter.pTC.getBuses().get(index).setPosition(bus.getPosition());
 				PublicTransportCenter.pTC.getBuses().get(index).setMovementState(bus.getMovementState());
 				PublicTransportCenter.pTC.getBuses().get(index).setStopTime(bus.getStopTime());
+				PublicTransportCenter.pTC.getBuses().get(index).setState(bus.getState());
 			}
 		}
 	}
