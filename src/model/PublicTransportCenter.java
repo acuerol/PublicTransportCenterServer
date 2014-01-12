@@ -203,11 +203,8 @@ public class PublicTransportCenter implements Serializable {
 	{
 		ArrayList<String> names = new ArrayList<String>();
 		
-		if(drivers != null)
-		{
-			for (Driver driver : drivers) {
-				names.add(driver.getName() + " " + driver.getLastName());
-			}
+		for (Driver driver : drivers) {
+			names.add(driver.getName() + " " + driver.getLastName());
 		}
 		
 		return names;

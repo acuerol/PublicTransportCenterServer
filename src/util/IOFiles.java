@@ -88,8 +88,9 @@ public class IOFiles {
 	 * @param ptc The PublicTransportCenter instance for get the stations.
 	 * @return the list of all routes.
 	 */
-	public static ArrayList<Route> loadRoute(String pathName, PublicTransportCenter ptc)
+	public static ArrayList<Route> loadRoute(String pathName)
 	{
+		PublicTransportCenter pTC = PublicTransportCenter.getPublicTransportCenter();
 		ArrayList<Route> routes = new ArrayList<Route>();
 		ArrayList<Station> stopStations = new ArrayList<Station>();
 		File file = new File(pathName);
@@ -117,10 +118,10 @@ public class IOFiles {
 				while(tokenizer.hasMoreTokens())
 				{
 					tempStationName = tokenizer.nextToken();
-					stopStations.add(ptc.getStationByName(tempStationName));
+					stopStations.add(pTC.getStationByName(tempStationName));
 				}
 				
-				routes.add(new Route(name, loadWay(stopStations, ptc)));
+				routes.add(new Route(name, loadWay(stopStations)));
 			}
 			
 			bufferedR.close();
@@ -143,7 +144,7 @@ public class IOFiles {
 	{
 		ArrayList<Semaphore> semaphores = new ArrayList<Semaphore>();
 		File file = new File(pathName);
-		String line = null;
+		String line = "";
 		StringTokenizer tokenizer;
 		
 		String name;
@@ -240,21 +241,22 @@ public class IOFiles {
 		return stations;
 	}
 	
-	private static Way loadWay(ArrayList<Station> stopStations, PublicTransportCenter ptc)
+	private static Way loadWay(ArrayList<Station> stopStations)
 	{
+		PublicTransportCenter pTC = PublicTransportCenter.getPublicTransportCenter();
 		ArrayList<Object> pathRoute =  new ArrayList<Object>();
 		ArrayList<Double> distances = new ArrayList<Double>();
 		
-		ptc.getSearch().search(ptc.getGraph(), stopStations.get(0), stopStations.get(stopStations.size() - 1), null);
-		
-		pathRoute =  ptc.getSearch().selectByStopStationsPath(stopStations);
+		pTC.getSearch().search(pTC.getGraph(), stopStations.get(0), stopStations.get(stopStations.size() - 1), null);
 
+		pathRoute =  pTC.getSearch().selectByStopStationsPath(stopStations);
+		
 		for (int i = 0; i < pathRoute.size(); i++) 
 		{
-			distances.add(ptc.getDistanceAB(new ArrayList<Object>(pathRoute.subList(0, i))));
+			distances.add(pTC.getDistanceAB(new ArrayList<Object>(pathRoute.subList(0, i))));
 		}
 		
-		return new Way(distances, pathRoute);
+		return new Way(pathRoute, distances);
 	}
 		
 	/**

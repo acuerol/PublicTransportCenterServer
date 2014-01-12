@@ -34,6 +34,7 @@ public class Graph implements Serializable {
 			{	
 				nodes.add(father);
 			}
+			
 			if(!nodes.contains(child))
 			{
 				nodes.add(child);
@@ -102,7 +103,7 @@ public class Graph implements Serializable {
 	public <E> void addListNode(ArrayList<E> objects)
 	{
 		for (Object object : objects) {
-			this.addNode(object);
+			addNode(object);
 		}
 	}
 	

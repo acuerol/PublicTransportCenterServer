@@ -118,8 +118,6 @@ public class CentralSystem {
 			bus.setNextNode(UpdateBuses.getNextNode(bus));
 			bus.setNextStopStation(UpdateBuses.getNextStopStation(bus));
 			
-			bus.setStopNode(UpdateBuses.getStopNode(bus));
-			
 			double acceleration = UpdateBuses.getOptimalAcceleration(bus);
 			
 			if(acceleration != Double.NaN)

@@ -23,7 +23,6 @@ public class InitialValuesConnectionCenter {
 	private ServerSocket serverSocket;
 	private boolean listenInitialValuesRequest;
 	
-	
 	public InitialValuesConnectionCenter() 
 	{
 		centralSystem = CentralSystem.getCentralSystem();

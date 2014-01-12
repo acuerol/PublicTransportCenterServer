@@ -23,7 +23,7 @@ public class Way implements Serializable {
 	 * @param distances the distances of every node.
 	 * @param nodes the way nodes 
 	 */
-	public Way(ArrayList<Double> distances, ArrayList<Object> nodes) {
+	public Way(ArrayList<Object> nodes, ArrayList<Double> distances) {
 		this.distances = distances;
 		this.nodes = nodes;
 	}

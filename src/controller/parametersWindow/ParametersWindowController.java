@@ -25,14 +25,9 @@ import controller.CentralSystem;
  */
 public class ParametersWindowController {
 
-	private CentralSystem centralSystem;
 	private ParametersWindowJF parametersWindow;
-	private PublicTransportCenter pTC;
 	
 	public ParametersWindowController() {
-		centralSystem = CentralSystem.getCentralSystem();
-		pTC = PublicTransportCenter.getPublicTransportCenter();
-		
 		parametersWindow = new ParametersWindowJF();
 	}
 	
@@ -78,6 +73,7 @@ public class ParametersWindowController {
 	
 	public boolean loadFiles(String roadsPath, String stationsPath, String semaphoresPath, String[] routesPaths)
 	{
+		PublicTransportCenter pTC = PublicTransportCenter.getPublicTransportCenter();
 		boolean valGeneral = true;
 		boolean valRoads = true;
 		boolean valSemaphores = true;
@@ -93,7 +89,7 @@ public class ParametersWindowController {
 		if(valStations)
 		{
 			ArrayList<Station> stations = IOFiles.loadStations("cleanData/stationsData.txt");
-			pTC.setStations(stations);
+			PublicTransportCenter.getPublicTransportCenter().setStations(stations);
 			System.out.println("Stations loaded.");
 		}
 		else
@@ -105,7 +101,7 @@ public class ParametersWindowController {
 		if(valRoads)
 		{
 			ArrayList<Road> roads = IOFiles.loadRoads("cleanData/roadsData.txt");
-			pTC.setRoads(roads);
+			PublicTransportCenter.getPublicTransportCenter().setRoads(roads);
 			System.out.println("Roads loaded.");
 		}
 		else
@@ -117,7 +113,7 @@ public class ParametersWindowController {
 		if(valSemaphores)
 		{
 			ArrayList<Semaphore> semaphores = IOFiles.loadSemaphores("cleanData/semaphoresData.txt");
-			pTC.setSemaphores(semaphores);
+			PublicTransportCenter.getPublicTransportCenter().setSemaphores(semaphores);
 			System.out.println("Semaphores loaded.");
 		}
 		else
@@ -125,15 +121,13 @@ public class ParametersWindowController {
 			error += "\nSemaphores could not be loaded.";
 			System.out.println("Semaphores could not be loaded.");
 		}
-
+		
 		if(valSemaphores && valStations && valRoads)
 		{
-			pTC.loadNodesAttached();
+			PublicTransportCenter.getPublicTransportCenter().loadNodesAttached();
+			PublicTransportCenter.getPublicTransportCenter().addListNode();
+			PublicTransportCenter.getPublicTransportCenter().addListBidirectionalEdge();
 
-			pTC.addListNode();
-			
-			pTC.addListBidirectionalEdge();
-			
 			System.out.println("Nodes loaded.");
 		}
 		else
@@ -144,11 +138,11 @@ public class ParametersWindowController {
 		
 		if(valRoutes)
 		{
-			ArrayList<Route> routes = IOFiles.loadRoute("cleanData/routesData.txt", pTC);
 			
+			ArrayList<Route> routes = IOFiles.loadRoute("cleanData/routesData.txt");
 			if(routes != null)
 			{
-				pTC.setRoutes(routes);
+				PublicTransportCenter.getPublicTransportCenter().setRoutes(routes);
 			}
 			else
 			{
@@ -179,7 +173,7 @@ public class ParametersWindowController {
 //				}
 //				System.out.println();
 //			}
-			
+//			PublicTransportCenter.setPublicTransportCenter(pTC);
 			return true;
 		}
 		

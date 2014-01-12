@@ -42,9 +42,7 @@ public class Road implements Serializable {
 	 */
 	public void addNodesAttached(ArrayList<Object> nodes)
 	{
-		for (Object object : nodes) {
-			nodesAttached.add(object);
-		}
+		nodesAttached.addAll(nodes);
 	}
 	
 	@Override
