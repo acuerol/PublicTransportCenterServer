@@ -39,8 +39,8 @@ public class PublicTransportCenter implements Serializable {
 	private ArrayList<Route> routes;
 	private Search search;
 	private ArrayList<Semaphore> semaphores;
-	
 	private ArrayList<Station> stations;
+	private ArrayList<Way> ways;
 	
 	public void addBus(Bus bus)
 	{
@@ -59,8 +59,9 @@ public class PublicTransportCenter implements Serializable {
 		routes = new ArrayList<Route>();
 		semaphores= new ArrayList<Semaphore>();
 		drivers= new ArrayList<Driver>();
-		roads= new ArrayList<Road>();
-		graph= new Graph();
+		roads = new ArrayList<Road>();
+		ways = new ArrayList<Way>();
+		graph = new Graph();
 		search = new Search();
 	}
 	
@@ -139,8 +140,27 @@ public class PublicTransportCenter implements Serializable {
 	 */
 	public ArrayList<Bus> getBuses() {
 		return buses;
+	}	
+	
+	/**
+	 * @param ways the ways to set
+	 */
+	public void addWay(Way way) {
+		ways.add(way);
 	}
 	
+	public ArrayList<Bus> getBusesByRoute(Route route) {
+		ArrayList<Bus> busesByRoute = new ArrayList<Bus>();
+		for (Bus bus : buses) {
+			if(bus.getRoute().equals(route))
+			{
+				busesByRoute.add(bus);
+			}
+		}
+		
+		return busesByRoute;
+	}
+
 	/**
 	 * Returns the path distance.  
 	 * @param path the all nodes in the way.

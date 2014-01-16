@@ -1,13 +1,8 @@
 package util;
 
 import java.awt.geom.Point2D;
-import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
-import javax.swing.text.html.MinimalHTMLWriter;
-
-import controller.CentralSystem;
 import model.Bus;
 import model.PublicTransportCenter;
 import model.Semaphore;
@@ -17,7 +12,6 @@ public class UpdateBuses {
 
 	public static final Station UNKNOWED = new Station("Unknowed", new Point2D.Double(), false); 
 	public static final double STOP_TOLERANCE = 2e-2;
-	private static final double SPEED_DELTA = 1.5;
 	
 	public static Object getNextNode(Bus bus) {	
 		double busDistance = bus.getPosition();
@@ -124,7 +118,6 @@ public class UpdateBuses {
 		{
 			if(bus.getMovementState() != 0)
 			{
-				System.out.println("true");
 				Object nextNode = bus.getNextNode(); 
 				double nodeDistance = getNodeDistance(bus);
 				
@@ -147,74 +140,31 @@ public class UpdateBuses {
 						System.out.println("The Next Node is the Semaphore ID: " + semaphore.getId() + " --> Node distance: " + UtilCalc.round(nodeDistance * 1000, 1) + " --> Red --> Time until green: " + (semaphore.getTimeRed() - semaphore.getTime()));
 					}
 					
-					if(bus.getMovementState() != -2 && bus.getMovementState() != -1)
+					if(bus.getMovementState() != -2 && bus.getMovementState() != -1 && bus.getMovementState() != 0)
 					{
-						if(avaibleTime == 0)
-						{
-//							System.out.println("The semaphore is red.");
-							
-							switch (PhysicalCalculations.conditionToBreaking(bus, nodeDistance)) 
-							{
-							case 1:
-								bus.setMovementState(1);
-								
-								if(bus.getSpeed() < PhysicalCalculations.ADEQUATE_SPEED)
-								{
-//									System.out.println("Acceleration very slow for breaking, waiting...");
-									return PhysicalCalculations.ADEQUATE_ACCELERATION;
-								}
-								
-//								System.out.println("Very fast.");
-								return 0;
-							case 3:
-								if(bus.getMovementState() != 99 && bus.getMovementState() != 5)
-								{
-//									System.out.println("Red breaking.");
-									if(bus.getSpeed() > 0)
-									{
-										bus.setMovementState(3);
-										return PhysicalCalculations.bestBreaking(bus, nodeDistance);
-									}
-									
-									bus.setMovementState(0);
-									return 0;
-								}
-								
-								return PhysicalCalculations.MIN_ACCELERATION;
-							case 4:
-								bus.setMovementState(4);
-								
-								if(bus.getSpeed() < PhysicalCalculations.ADEQUATE_SPEED)
-								{
-//									System.out.println("Pass in red.");
-									return PhysicalCalculations.MAX_ACCELERATION;
-								}
-								
-//								System.out.println("Very fast.");
-								return 0;
-							}
-							
-						} else
+						if(avaibleTime > 0)
 						{
 //							System.out.println("The Semaphore is green.");
 							
-							switch (PhysicalCalculations.conditionToPass(bus, nodeDistance, avaibleTime))
+							switch (PhysicalCalculations.conditionToPassInGreen(bus, nodeDistance, avaibleTime))
 							{
 							case 1:
-								bus.setMovementState(1);
+//								bus.setMovementState(1);
 								
-								if(bus.getSpeed() < PhysicalCalculations.ADEQUATE_SPEED)
-								{
-//									System.out.println("Green accelerating.");
-									return PhysicalCalculations.ADEQUATE_ACCELERATION;
-								}
+								return balanceForGreenLigth(bus);
 								
-//								System.out.println("Very fast.");
-								return 0;
+//								if(bus.getSpeed() < PhysicalCalculations.ADEQUATE_SPEED)
+//								{
+////									System.out.println("Green accelerating.");
+//									return PhysicalCalculations.ADEQUATE_ACCELERATION;
+//								}
+//								
+////								System.out.println("Very fast.");
+//								return 0;
 							case 2:
 								bus.setMovementState(2);
 								
-								if(bus.getSpeed() < PhysicalCalculations.ADEQUATE_SPEED)
+								if(bus.getSpeed() < PhysicalCalculations.MAX_SPEED)
 								{
 //									System.out.println("Green accelerating for pass.");
 									return PhysicalCalculations.bestAcceleration(bus, nodeDistance, avaibleTime);
@@ -227,61 +177,78 @@ public class UpdateBuses {
 //								System.out.println("Green but the time not enough.");
 								return PhysicalCalculations.bestBreaking(bus, nodeDistance);
 							}
+						} else 
+						{
+							System.out.println("The semaphore is red.");
+							avaibleTime *= -1;
+
+							if(bus.getMovementState() != 0 && bus.getMovementState() != -1)
+							{
+								switch (PhysicalCalculations.conditionToBreaking(bus, nodeDistance)) 
+								{
+								case 1:
+									return balance(bus);
+									
+//									bus.setMovementState(1);
+//									if(bus.getSpeed() < PhysicalCalculations.ADEQUATE_SPEED)
+//									{
+////										System.out.println("Acceleration very slow for breaking, waiting...");
+//										return PhysicalCalculations.ADEQUATE_ACCELERATION;
+//									}
+//									
+////									System.out.println("Very fast.");
+//									return 0;
+								case 3:
+									if(bus.getMovementState() != 99 && bus.getMovementState() != 5)
+									{
+//										System.out.println("Red breaking.");
+										if(bus.getSpeed() > 0)
+										{
+											bus.setMovementState(3);
+											return PhysicalCalculations.bestBreaking(bus, nodeDistance);
+										}
+										
+										bus.setMovementState(0);
+										return 0;
+									}
+									
+									return PhysicalCalculations.MIN_ACCELERATION;
+								case 4:
+									bus.setMovementState(4);
+									
+									if(bus.getSpeed() < PhysicalCalculations.ADEQUATE_SPEED)
+									{
+//										System.out.println("Pass in red.");
+										return PhysicalCalculations.MAX_ACCELERATION;
+									}
+									
+//									System.out.println("Very fast.");
+									return 0;
+								}
+							}
+							
 						}
 						
 						System.err.println("Error evaluating system.");
-						return Double.NaN;
+						return 0;
 					}
 					
 					return 0;
 				} else
 				{
-					int index = pTC.getStations().indexOf(nextNode);
-					nextNode = pTC.getStations().get(index);
-					
 					System.out.println("The Next Node is the Station: " + (((Station)(nextNode)).getName()) + " --> Node distance: " + UtilCalc.round(nodeDistance * 1000, 1) + " Stop time: " + bus.getStopTime());
-					
-					if(!nextNode.equals(UNKNOWED))
-					{
+
+					if(!nextNode.equals(UNKNOWED) && bus.getMovementState() != -2 && bus.getMovementState() != -1 && bus.getMovementState() != 0)
+					{				
+						
 						switch (PhysicalCalculations.conditionToBreakingStation(bus, nodeDistance))
 						{
 						case 1:
+							System.out.println("Case 1");
+							return balance(bus);
 							
-							switch (PhysicalCalculations.isBalanced(bus))
-							{
-							case -1:
-								bus.setMovementState(6);
-								if(bus.getSpeed() > PhysicalCalculations.MIN_SPEED)
-								{
-									return PhysicalCalculations.MIN_BREAKING;
-								}
-								
-								return 0;
-							case 0:
-								return 0;
-							case 1:
-								bus.setMovementState(6);
-								if(bus.getSpeed() < PhysicalCalculations.MAX_SPEED)
-								{
-									return PhysicalCalculations.MIN_ACCELERATION;
-								}
-								
-								return 0;
-							case 2:
-								return PhysicalCalculations.ADEQUATE_ACCELERATION;
-							}
-							
-							bus.setMovementState(1);
-							return 0;
-							
-//							bus.setMovementState(1);
-//							if(bus.getSpeed() < PhysicalCalculations.MAX_SPEED)
-//							{
-//								return PhysicalCalculations.MIN_ACCELERATION;
-//							}
-//							
-//							return 0;
 						case 3:
+							System.out.println("Case 3");
 							if (bus.getMovementState() != 99 && bus.getMovementState() != 5)
 							{
 								bus.setMovementState(3);
@@ -293,20 +260,135 @@ public class UpdateBuses {
 								
 								bus.setMovementState(0);
 								return 0;
-							}
+							} 
 							
-							return PhysicalCalculations.MIN_ACCELERATION;
+							bus.setMovementState(1);
+							return PhysicalCalculations.ADEQUATE_ACCELERATION;
 						}
+						
+						
 					}
 				}
 			}
-			
-			return PhysicalCalculations.ADEQUATE_BREAKING;
 		}
 		
 		return 0;
 	}
+	
+	private static double balanceForGreenLigth(Bus bus)	{
+		System.out.println(PhysicalCalculations.isBalanced(bus));
+		switch (PhysicalCalculations.isBalanced(bus)) {
+			case -2:
+				bus.setMovementState(6);
+				
+				if(bus.getSpeed() < PhysicalCalculations.MIN_SPEED)	{
+					return PhysicalCalculations.ADEQUATE_ACCELERATION;
+				}
+				
+				if(bus.getSpeed() < 0)
+				{
+					System.out.println("Min distance.");
+					bus.setSpeed(0);
+					return 0;
+				}
+				
+				return PhysicalCalculations.ADEQUATE_BREAKING;
+			case -1:
+				bus.setMovementState(1);
+				if(bus.getSpeed() < PhysicalCalculations.MIN_SPEED)	{
+					return PhysicalCalculations.MIN_ACCELERATION;
+				}
+				
+				return 0;
+			case 0:
+				
+				if(bus.getSpeed() < PhysicalCalculations.MIN_SPEED)	{
+					bus.setMovementState(2);
+					return PhysicalCalculations.ADEQUATE_ACCELERATION;
+				}
+				
+				bus.setMovementState(1);
+				return 0;
+			case 1:
+				bus.setMovementState(6);
+				if(bus.getSpeed() < PhysicalCalculations.MAX_SPEED)
+				{
+					return PhysicalCalculations.ADEQUATE_ACCELERATION;
+				}
+				
+				return 0;
+			case 2:
+				bus.setMovementState(2);
+				if(bus.getSpeed() < PhysicalCalculations.ADEQUATE_SPEED)
+				{
+					return PhysicalCalculations.ADEQUATE_ACCELERATION;
+				}
+				
+				return 0;
+		}
+		
+		bus.setMovementState(1);
+		return 0;
+	}
 
+	private static double balance(Bus bus) {
+		switch (PhysicalCalculations.isBalanced(bus))
+		{
+		case -2:
+			bus.setMovementState(6);
+			if(bus.getSpeed() < 0)
+			{
+//				System.out.println("Min distance.");
+				bus.setSpeed(0);
+				return 0;
+			}
+			
+			return PhysicalCalculations.ADEQUATE_BREAKING;	
+		case -1:
+			bus.setMovementState(6);
+			if(bus.getSpeed() < PhysicalCalculations.MIN_SPEED - PhysicalCalculations.DELTA_SPEED)
+			{
+//				System.out.println("< Min Speed, accelerating.");
+				return PhysicalCalculations.MIN_ACCELERATION;
+			} else {
+				if(bus.getSpeed() > PhysicalCalculations.MIN_SPEED + PhysicalCalculations.DELTA_SPEED) {
+//					System.out.println("> Min speed.");
+					return PhysicalCalculations.MIN_BREAKING;
+				}
+			}
+			
+//			System.out.println("Adequate speed.");
+			return 0;
+		case 0:
+//			System.out.println("OK.");
+			bus.setMovementState(1);
+			return 0;
+		case 1:
+			
+			bus.setMovementState(6);
+			if(bus.getSpeed() < PhysicalCalculations.MAX_SPEED)
+			{
+//				System.out.println("< Max speed accelerating.");
+				return PhysicalCalculations.ADEQUATE_ACCELERATION;
+			}
+			
+			return 0;
+		case 2:
+			bus.setMovementState(2);
+			if(bus.getSpeed() < PhysicalCalculations.MAX_SPEED)
+			{
+//				System.out.println("UNKNOWED");
+				return PhysicalCalculations.ADEQUATE_ACCELERATION;
+			}
+			
+			return 0;
+		}
+		
+//		System.out.println("Last.");
+		bus.setMovementState(1);
+		return 0;
+	}
+	
 	public static Object getStopNode(Bus bus) {
 		
 		if(bus.getSpeed() < 1)

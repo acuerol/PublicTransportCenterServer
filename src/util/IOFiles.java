@@ -248,7 +248,6 @@ public class IOFiles {
 		ArrayList<Double> distances = new ArrayList<Double>();
 		
 		pTC.getSearch().search(pTC.getGraph(), stopStations.get(0), stopStations.get(stopStations.size() - 1), null);
-
 		pathRoute =  pTC.getSearch().selectByStopStationsPath(stopStations);
 		
 		for (int i = 0; i < pathRoute.size(); i++) 

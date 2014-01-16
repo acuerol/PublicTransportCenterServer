@@ -21,7 +21,7 @@ public class MainJP extends JPanel {
 	public static final String ROADS_PATH = "inputData/Roads.kml";
 	public static final String STATIONS_PATH = "inputData/Stations.kml";
 	public static final String SEMAPHORES_PATH = "inputData/Semaphores.kml";
-	public static final String ROUTES_PATHS = "inputData\\E21.txt,inputData\\E27.txt,inputData\\E31.txt,inputData\\E37.txt,inputData\\T31.txt,inputData\\T40.txt,inputData\\T42.txt,inputData\\T47A.txt,inputData\\T47B.txt,inputData\\T50.txt,inputData\\T57A.txt";
+	public static final String ROUTES_PATHS = "inputData/E21.txt,inputData/E27.txt,inputData/E31.txt,inputData/E37.txt,inputData/T31.txt,inputData/T40.txt,inputData/T42.txt,inputData/T47A.txt,inputData/T47B.txt,inputData/T50.txt,inputData/T57A.txt";
 	
 	private JLabel roadsPathJL;
 	private JLabel stationsPathJL;

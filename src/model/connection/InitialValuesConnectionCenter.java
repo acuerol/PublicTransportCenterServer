@@ -17,7 +17,6 @@ import view.connectionWindow.ConnectionWindowJF;
 public class InitialValuesConnectionCenter {
 	public static final int PORT = 5000;
 	
-	private CentralSystem centralSystem;
 	private ConnectionWindowJF connectionWindow;
 	private Socket connection;
 	private ServerSocket serverSocket;
@@ -25,7 +24,6 @@ public class InitialValuesConnectionCenter {
 	
 	public InitialValuesConnectionCenter() 
 	{
-		centralSystem = CentralSystem.getCentralSystem();
 		try {
 			serverSocket = new ServerSocket(PORT);
 		} catch (IOException e) {
@@ -38,7 +36,7 @@ public class InitialValuesConnectionCenter {
 	{
 		try 
 		{
-			connectionWindow = centralSystem.getControllerConnectionWindow().getConnectionWindow();
+			connectionWindow = CentralSystem.getCentralSystem().getControllerConnectionWindow().getConnectionWindow();
 			
 			System.out.println("-----------------------------");
 			System.out.println("Waiting initial values request...");
@@ -76,19 +74,15 @@ public class InitialValuesConnectionCenter {
 			e.printStackTrace();
 		}
 	}
-
-	public PublicTransportCenter receiveSystemReport()
-	{
-		return null;
-		
-	}
 	
 	public void startServer()
 	{
 		while(true)
 		{
+			System.out.println("Listen");
 			if(listenInitialValuesRequest)
 			{
+				
 				listenInitialValuesRequest();
 			}
 		}
