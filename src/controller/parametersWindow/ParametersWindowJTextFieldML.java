@@ -1,24 +1,23 @@
 package controller.parametersWindow;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 
 import controller.CentralSystem;
 import view.windowParameters.MainJP;
 
+/**
+ * @author Alexis Cuero Losada
+ * This class implements {@link MouseListener} for handle the Mouse events in {@link MainJP}.
+ */
 public class ParametersWindowJTextFieldML implements MouseListener {
-	private ParametersWindowController parametersWindowController;
-	private MainJP mainJP;
-
+	
 	@Override
 	public void mouseClicked(MouseEvent event) {
-		parametersWindowController = CentralSystem.getCentralSystem().getWindowParametersController();
-		mainJP = parametersWindowController.getWindowParameters().getDivisionJSP().getMainJP();
+		ParametersWindowController parametersWindowController = CentralSystem.getCentralSystem().getWindowParametersController();
+		MainJP mainJP = parametersWindowController.getWindowParameters().getDivisionJSP().getMainJP();
 		JTextField source = (JTextField) event.getSource();
 		String pathNames = "";
 		if(source.equals(mainJP.getRoadsPathJTF()))
@@ -27,7 +26,7 @@ public class ParametersWindowJTextFieldML implements MouseListener {
 			
 			if(pathNames != "")
 			{
-				mainJP.setRoadsPathText(pathNames);
+				mainJP.getRoadsPathJTF().setText(pathNames);
 			}
 		}
 		else
@@ -37,7 +36,7 @@ public class ParametersWindowJTextFieldML implements MouseListener {
 				pathNames = parametersWindowController.openFileChooser("KML Files", "kml", false);
 				if(pathNames != "")
 				{
-					mainJP.setStationsPathText(pathNames);
+					mainJP.getStationsPathJTF().setText(pathNames);
 				}
 			}
 			else
@@ -47,7 +46,7 @@ public class ParametersWindowJTextFieldML implements MouseListener {
 					pathNames = parametersWindowController.openFileChooser("KML Files", "kml", false);
 					if(pathNames != "")
 					{
-						mainJP.setSemaphoresPathText(pathNames);
+						mainJP.getSemaphoresPathJTF().setText(pathNames);
 					}
 				}
 				else
@@ -57,7 +56,7 @@ public class ParametersWindowJTextFieldML implements MouseListener {
 						pathNames = parametersWindowController.openFileChooser("TXT Files", "txt", true);
 						if(pathNames != "")
 						{
-							mainJP.setRoutesPathText(pathNames);
+							mainJP.getRoutesPathsJTF().setText(pathNames);
 						}
 					}
 				}
@@ -67,29 +66,17 @@ public class ParametersWindowJTextFieldML implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 }

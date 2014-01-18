@@ -1,26 +1,27 @@
 package view.connectionWindow;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
+import java.awt.Color;
 
 import javax.swing.JFrame;
 
 import controller.connectionWindow.ConnectionWindowJButtonsML;
-import model.PublicTransportCenter;
 
 /**
- * 
  * @author Alexis Cuero Losada
- *
+ * This class extends of JFrame and is the GUI for show the connection options and state. 
  */
 public class ConnectionWindowJF extends JFrame {
 	
-	private PublicTransportCenter pTC;
+	private static final long serialVersionUID = 6051612785450216929L;
+	
 	private ButtonsJP buttonsJP;
 	private InformationJP informationJP;
 	
+	/**
+	 * Create a MainWindowJF instance, instance and add elements to the JFrame.
+	 */
 	public ConnectionWindowJF() {
-		pTC = PublicTransportCenter.getPublicTransportCenter();
 		setTitle("Connection Window");
 		setLayout(new BorderLayout());
 		setSize(400, 400);
@@ -32,6 +33,7 @@ public class ConnectionWindowJF extends JFrame {
 	
 	private void setApareance()
 	{
+		setBackground(Color.WHITE);
 		buttonsJP = new ButtonsJP();
 		informationJP = new InformationJP();
 		
@@ -39,29 +41,37 @@ public class ConnectionWindowJF extends JFrame {
 		add(buttonsJP, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Returns the {@link ButtonsJP} instance creates in this class.
+	 * @return the {@link ButtonsJP} instance
+	 */
 	public ButtonsJP getButtonsJP() {
 		return buttonsJP;
 	}
 	
+	/**
+	 * Sets the MouseListener to the buttons in {@link ButtonsJP}.
+	 */
 	public void setJButtonsMouseListeners()
 	{
 		ConnectionWindowJButtonsML mouseListener = new ConnectionWindowJButtonsML();
 		buttonsJP.setJButtonsMouseListener(mouseListener);
-		mouseListener.start();
+//		mouseListener.start();
 	}
-	
-	public void changeActionCommand()
-	{
-		buttonsJP.changeActionCommandRequestListener();
+
+	/**
+	 * @return The {@link InformationJP} instance.
+	 */
+	public InformationJP getInformationJP() {
+		return informationJP;
 	}
-	
-	public void setInformationText(String text)
-	{
-		informationJP.setInformationText(text);
-	}
-	
-	public void addInformationText(String text)
-	{
-		informationJP.addInformationText(text);
+
+	/**
+	 * Adds text to the JTextArea in {@link InformationJP}.
+	 * @param string text to add
+	 */
+	public void addInformationText(String string) {
+		String backText = informationJP.getInformationJTA().getText() + "\n";
+		informationJP.getInformationJTA().setText(backText + string);
 	}
 }

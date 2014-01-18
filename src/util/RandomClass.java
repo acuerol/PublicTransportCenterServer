@@ -50,9 +50,9 @@ public class RandomClass {
 	}
 	
 	/**
-	 * Returns a random string with a size of lenght and randon char in each position. 
+	 * Returns a random string with a size of length and random char in each position. 
 	 * @param length the size of string.
-	 * @return a random string with a lenght specified.
+	 * @return a random string with a length specified.
 	 */
 	public static String getRandomString(int length)
 	{

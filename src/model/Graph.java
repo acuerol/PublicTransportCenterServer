@@ -3,9 +3,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * 
  * @author Alexis Cuero Losada
- *
+ * This class is the abstraction of graph for sort the nodes and edges.
  */
 public class Graph implements Serializable {
 	

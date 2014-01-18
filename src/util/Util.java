@@ -4,7 +4,7 @@ import java.io.File;
 
 /**
  * @author Alexis Cuero Losada
- *
+ * This class offer several methods for validate fields and get specific attributes of objects.
  */
 public class Util {
 
@@ -73,6 +73,11 @@ public class Util {
 		return true;
 	}
 	
+	/**
+	 * Returns the absolute path of a File[].
+	 * @param files the file to get the absolutePath.
+	 * @return a String with the absolute path of all files.
+	 */
 	public static String getAbsolutePaths(File[] files)
 	{
 		String pathNames = "";

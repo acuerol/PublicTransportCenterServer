@@ -1,28 +1,37 @@
 package controller.threads;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-
-import controller.CentralSystem;
 import model.PublicTransportCenter;
-import model.Semaphore;
 import model.connection.ListenReportConnection;
 
+/**
+ * @author Alexis Cuero Losada
+ * This class extends of Thread and is use for handle the report sent from clients for update the system
+ * and return the new system.
+ */
 public class ListenReportConnectionThread extends Thread {
 
-	private ListenReportConnection reportConnection;
+	private ListenReportConnection listenReportConnection;
 	private boolean isReporting;
 	
+	/**
+	 * Creates a {@link ListenReportConnection} instance for receive the report request.
+	 */
 	public ListenReportConnectionThread() {
 		isReporting = false;
-		reportConnection = new ListenReportConnection();
+		listenReportConnection = new ListenReportConnection();
 	}
 	
+	/**
+	 * Starts to report the system.
+	 */
 	public void startToReport()
 	{
 		isReporting = true;
 	}
 	
+	/**
+	 * Stops of report the system.
+	 */
 	public void stopOfReport()
 	{
 		isReporting = false;
@@ -34,9 +43,8 @@ public class ListenReportConnectionThread extends Thread {
 		{
 			if(isReporting)
 			{
-				PublicTransportCenter.refreshBusesFromClient(reportConnection.readReportSystem());
+				PublicTransportCenter.refreshBusesFromClient(listenReportConnection.readReportSystem());
 			}
 		}
 	}
-	
 }

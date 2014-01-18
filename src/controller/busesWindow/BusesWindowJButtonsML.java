@@ -5,24 +5,20 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 
-import view.busesWindow.BusesWindowButtonsJP;
-import view.busesWindow.BusesWindowTableJP;
+import view.busesWindow.ButtonsJP;
 import controller.CentralSystem;
 
+/**
+ * @author Alexis Cuero Losada.
+ * This class implements MouseListener for handle the mouse event of the buttons in the BusesWindowJF.
+ */
 public class BusesWindowJButtonsML implements MouseListener {
-
-	private BusesWindowButtonsJP buttonsJP;
-	private CentralSystem centralSystem;
-	private BusesWindowController busesWindowController;
-	
-	public BusesWindowJButtonsML() {
-		centralSystem = CentralSystem.getCentralSystem();
-		busesWindowController = centralSystem.getBusesWindowController();
-		buttonsJP = busesWindowController.getBusesWindow().getButtonsJP();
-	}
 	
 	@Override
 	public void mouseClicked(MouseEvent event) {
+		CentralSystem centralSystem = CentralSystem.getCentralSystem();
+		BusesWindowController busesWindowController = centralSystem.getBusesWindowController();
+		ButtonsJP buttonsJP = busesWindowController.getBusesWindow().getButtonsJP();
 		JButton source = (JButton) event.getSource();
 		
 		if(source.equals(buttonsJP.getSendBusJB()))
@@ -48,27 +44,19 @@ public class BusesWindowJButtonsML implements MouseListener {
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void mouseEntered(MouseEvent arg0) {	
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void mousePressed(MouseEvent arg0) {	
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void mouseReleased(MouseEvent arg0) {	
 	}
 
 }

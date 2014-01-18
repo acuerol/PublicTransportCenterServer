@@ -15,6 +15,9 @@ import view.connectionWindow.ConnectionWindowJF;
  *
  */
 public class InitialValuesConnectionCenter {
+	/**
+	 * The port that the server will use.
+	 */
 	public static final int PORT = 5000;
 	
 	private ConnectionWindowJF connectionWindow;
@@ -22,6 +25,9 @@ public class InitialValuesConnectionCenter {
 	private ServerSocket serverSocket;
 	private boolean listenInitialValuesRequest;
 	
+	/**
+	 * Constructor that initialize the ServerSocket.
+	 */
 	public InitialValuesConnectionCenter() 
 	{
 		try {
@@ -32,6 +38,9 @@ public class InitialValuesConnectionCenter {
 		}
 	}
 	
+	/**
+	 * Starts to listen the socket for initial value request. 
+	 */
 	public void listenInitialValuesRequest()
 	{
 		try 
@@ -75,6 +84,9 @@ public class InitialValuesConnectionCenter {
 		}
 	}
 	
+	/**
+	 * Start the infinite loop that maintain the server always running.
+	 */
 	public void startServer()
 	{
 		while(true)
@@ -82,17 +94,22 @@ public class InitialValuesConnectionCenter {
 			System.out.println("Listen");
 			if(listenInitialValuesRequest)
 			{
-				
 				listenInitialValuesRequest();
 			}
 		}
 	}
 	
+	/**
+	 * Turn off the listen initial value request.
+	 */
 	public void turnOffListenInitialValuesRequest()
 	{
 		listenInitialValuesRequest = false;
 	}
 	
+	/**
+	 * Turn on the listen initial value request.
+	 */
 	public void turnOnListenInitialValuesRequest()
 	{
 		listenInitialValuesRequest = true;

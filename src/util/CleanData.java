@@ -15,13 +15,12 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- * 
  * @author Alexis Cuero Losada
- *
+ * This class contain several methods for clean the data and generate new files with the clean data.
  */
 public class CleanData {
 	/**
-	 * Return true if the roads data was sucefully extrated of the kml file, else return false.
+	 * Return true if the roads data was successfully extracted of the kml file, else return false.
 	 * @param pathName the file path in the disk.
 	 * @return if the operation was success.
 	 */
@@ -70,8 +69,9 @@ public class CleanData {
 	}
 	
 	/**
-	 * Return true if the routes data was sucefully extrated of the text files, else return false.
+	 * Return true if the routes data was successfully extracted of the text files, else return false.
 	 * @param paths the file paths in the disk.
+	 * @param pathName the pathName of the file for save the clean data of routes.
 	 * @return if the operation was success.
 	 */
 	public static boolean getRoutesData(String[] paths, String pathName)
@@ -103,7 +103,6 @@ public class CleanData {
 					name = path.substring(path.lastIndexOf("/") + 1, path.lastIndexOf("."));
 				}
 				
-//				System.out.println(name);
 				while((line = bufferedR.readLine()) != null)
 				{
 					lines += line + ";";
@@ -127,7 +126,7 @@ public class CleanData {
 	}
 	
 	/**
-	 * Return true if the semaphores data was sucefully extrated of the kml file, else return false.
+	 * Return true if the semaphores data was successfully extracted of the kml file, else return false.
 	 * @param pathName the file path in the disk.
 	 * @return if the operation was success.
 	 */
@@ -195,7 +194,7 @@ public class CleanData {
 	}
 	
 	/**
-	 * Return true if the station data was sucefully extrated of the kml file, else return false.
+	 * Return true if the station data was successfully extracted of the kml file, else return false.
 	 * @param pathName the file path in the disk.
 	 * @return if the operation was success.
 	 */

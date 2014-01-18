@@ -1,26 +1,23 @@
 package controller.threads;
 
-import java.util.ArrayList;
-
 import model.PublicTransportCenter;
 import model.Semaphore;
 
+/**
+ * @author Alexis Cuero Losada
+ * This class extends of Thread and is use for refresh the semaphores state. 
+ */
 public class SemaphoresStateThread extends Thread {
-	
-	private PublicTransportCenter pTC;
-	
-	public SemaphoresStateThread() {
-		pTC = PublicTransportCenter.getPublicTransportCenter();
-		System.out.println("SemaphoresStateThreadRunning...");
-	}
 	
 	@Override
 	public void run() {
+		System.out.println("SemaphoresStateThreadRunning...");
 		refreshState();
 	}
 
 	private void refreshState() {
 		int semaphoreTime = 0;
+		PublicTransportCenter pTC;
 		
 		while(true)
 		{

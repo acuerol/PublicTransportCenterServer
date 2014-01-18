@@ -6,13 +6,12 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 
 /**
- * 
  * @author Alexis Cuero Losada
- *
+ * This class offer several methods for convert the information of files to information easily for manage.
  */
 public class UtilCalc {
 	
-	private static final double E = 1e-12;
+	private static final double EPS = 1e-12;
 	private static final double RADIUS = 6371.5;
 	
 	/**
@@ -23,9 +22,9 @@ public class UtilCalc {
 	 */
 	public static boolean comparePoints(Double pointA, Double pointB)
 	{
-		if(Math.abs(pointA.getX() - pointB.getX()) < E)
+		if(Math.abs(pointA.getX() - pointB.getX()) < EPS)
 		{
-			if(Math.abs(pointA.getY() - pointB.getY()) < E)
+			if(Math.abs(pointA.getY() - pointB.getY()) < EPS)
 			{
 				return true;
 			}
@@ -64,7 +63,7 @@ public class UtilCalc {
 	}
 	
 	/**
-	 * Returns the calculation of the greographical distance between two points.
+	 * Returns the calculation of the geographical distance between two points.
 	 * @param pointA the point from start the segment. 
 	 * @param pointB the point from ends the segment.
 	 * @return the distance between two points.
@@ -77,6 +76,12 @@ public class UtilCalc {
 		return (RADIUS * (Math.acos( Math.sin( latA ) * Math.sin( latB ) + Math.cos( latA ) * Math.cos( latB ) * Math.cos( dLon )))); 
 	}
 	
+	/**
+	 * Returns a double with the number of digits.
+	 * @param number the number to round.
+	 * @param digits the number of decimal.
+	 * @return the number round.
+	 */
 	public static double round(double number, int digits)
 	{
 		int digitsNum = (int) Math.pow(10, digits);
@@ -85,6 +90,12 @@ public class UtilCalc {
 		return number;
 	}
 	
+	/**
+	 * Returns true if the numbers are equal.
+	 * @param a the first double for compare.
+	 * @param b the second double for compare.
+	 * @return if the numbers are equal.
+	 */
 	public static boolean compareDouble(double a, double b)
 	{
 		final double EPSILON = 1E-2;

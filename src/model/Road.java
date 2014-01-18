@@ -4,15 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * 
  * @author Alexis Cuero Losada
- *
+ * Abstracts the real world roads.
  */
 public class Road implements Serializable {
-	
-	/**
-	 * The Road serialVersionUID.
-	 */
+
 	private static final long serialVersionUID = 1978281887330643800L;
 	private double distance;
 	private Point2D.Double finalPoint;

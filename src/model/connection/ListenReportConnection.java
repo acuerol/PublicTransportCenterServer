@@ -6,22 +6,26 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import model.Bus;
 import model.PublicTransportCenter;
 import controller.CentralSystem;
 
+/**
+  * @author Alexis Cuero Losada
+  * Class for receive a report from the other client.
+  */
 public class ListenReportConnection {
 
-	private CentralSystem centralSystem;
+	/**
+	 * The port for listen the report connections.
+	 */
 	public static final int PORT = 5001;
 	private Socket connection;
 	private ServerSocket serverSocket;
-	private PublicTransportCenter pTC;
 	
+	/**
+	 * Constructor that initialize the server for listen reports.
+	 */
 	public ListenReportConnection() {
-		centralSystem = CentralSystem.getCentralSystem();
-		pTC = PublicTransportCenter.getPublicTransportCenter();
-		
 		try {
 			serverSocket = new ServerSocket(PORT);
 		} catch (IOException e) {
@@ -30,9 +34,16 @@ public class ListenReportConnection {
 		}
 	}
 	
+	/**
+	 * Reads the report receive from the client and generate a new system.
+	 * Returns the new system. 
+	 * @return the new system
+	 */
 	public PublicTransportCenter readReportSystem()
 	{
-		PublicTransportCenter pTC;
+		CentralSystem centralSystem = CentralSystem.getCentralSystem();
+		PublicTransportCenter pTC = PublicTransportCenter.getPublicTransportCenter();
+		PublicTransportCenter tempPTC;
 		try 
 		{
 			connection = serverSocket.accept();
@@ -40,22 +51,18 @@ public class ListenReportConnection {
 			ObjectOutputStream sendData = new ObjectOutputStream(connection.getOutputStream());
 			ObjectInputStream clientData = new ObjectInputStream(connection.getInputStream());
 			
-			pTC = (PublicTransportCenter) clientData.readObject();
+			tempPTC = (PublicTransportCenter) clientData.readObject();
 			
-			if(pTC != null)
+			if(tempPTC != null)
 			{
-				//System.out.println("***Report receive succefuly...");
-				this.pTC = pTC;
-				PublicTransportCenter.refreshBusesFromClient(pTC);
-//				System.out.println("Before generate System: " + pTC.getBuses().size());
+				pTC = tempPTC;
+				PublicTransportCenter.refreshBusesFromClient(tempPTC);
+
+				pTC = centralSystem.generateNewSystem();
 				
 				sendData.writeObject("true");
-
-				this.pTC = centralSystem.generateNewSystem(); 
 				
-//				System.out.println("After generate System: " + this.pTC.getBuses().size());
-				
-				sendData.writeObject(this.pTC);
+				sendData.writeObject(pTC);
 			}
 			else
 			{
@@ -74,6 +81,6 @@ public class ListenReportConnection {
 			return null;
 		}
 		
-		return this.pTC;
+		return pTC;
 	}
 }

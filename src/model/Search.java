@@ -8,9 +8,9 @@ import util.Util;
 
 
 /**
- * @author Alexis Cuero Losada
- * Adaptation of this thread: http://stackoverflow.com/questions/58306/graph-algorithm-to-find-all-connections-between-two-arbitrary-vertices
- * 
+ * @author Alexis Cuero Losada 
+ * Adaptation of this thread write by Casey Watson:
+ * http://stackoverflow.com/questions/58306/graph-algorithm-to-find-all-connections-between-two-arbitrary-vertices
  */
 public class Search implements Serializable {
 	
@@ -61,7 +61,7 @@ public class Search implements Serializable {
 					}
 					else
 					{
-						System.out.print(((Semaphore)(node)).getID() + " --> ");
+						System.out.print(((Semaphore)(node)).getId() + " --> ");
 					}
 				}
 				System.out.print(" End");

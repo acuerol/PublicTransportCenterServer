@@ -1,38 +1,49 @@
 package controller.threads;
 
 import model.connection.InitialValuesConnectionCenter;
-import view.connectionWindow.ConnectionWindowJF;
 
 /**
- * 
  * @author Alexis Cuero Losada
- *
+ * This class extends of Thread for handle the initial values request from clients.
  */
 public class InitialValuesRequestThread extends Thread {
 
-	private InitialValuesConnectionCenter serverConnectionCenter;
+	private InitialValuesConnectionCenter initialValuesConnectionCenter;
 	
+	/**
+	 * Constructor that creates a {@link InitialValuesConnectionCenter} instance.  
+	 */
 	public InitialValuesRequestThread() {
-		serverConnectionCenter = new InitialValuesConnectionCenter();
+		initialValuesConnectionCenter = new InitialValuesConnectionCenter();
 	}
 	
+	/**
+	 * Returns the {@link InitialValuesConnectionCenter} instance.
+	 * @return the {@link InitialValuesConnectionCenter} instance
+	 */
 	public InitialValuesConnectionCenter getServerCenter()
 	{
-		return serverConnectionCenter;
+		return initialValuesConnectionCenter;
 	}
 	
+	/**
+	 * Starts to listen the initialValues request. 
+	 */
 	public void startlistenInitialValuesRequest()
 	{
-		serverConnectionCenter.turnOnListenInitialValuesRequest();
+		initialValuesConnectionCenter.turnOnListenInitialValuesRequest();
 	}
 	
+	/**
+	 * Interrupts of listen the initialValues request. 
+	 */
 	public void pauselistenInitialValuesRequest()
 	{
-		serverConnectionCenter.turnOffListenInitialValuesRequest();
+		initialValuesConnectionCenter.turnOffListenInitialValuesRequest();
 	}
 	
 	@Override
 	public void run() {
-		serverConnectionCenter.startServer();
+		initialValuesConnectionCenter.startServer();
 	}
 }

@@ -8,13 +8,15 @@ import java.io.Serializable;
  *
  */
 public class Route implements Serializable {
-	/**
-	 * The Route serialVersionUID
-	 */
+
 	private static final long serialVersionUID = 1292163716323103404L;
 	private String name;
 	private Way way;
 	
+	/**
+	 * Returns the route way.
+	 * @return the route way.
+	 */
 	public Way getWay() {
 		return way;
 	}

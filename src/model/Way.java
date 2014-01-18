@@ -11,13 +11,11 @@ import util.UtilCalc;
  *
  */
 public class Way implements Serializable {
-	/**
-	 * The Way serialVersionUID.
-	 */
+
 	private static final long serialVersionUID = 2465918592855998873L;
 	private ArrayList<Double> distances;
 	private ArrayList<Object> nodes;
-	// ver si no es mejro con un TreeMap.
+
 	/**
 	 * Creates a Way instance with all parameters.
 	 * @param distances the distances of every node.
@@ -83,22 +81,26 @@ public class Way implements Serializable {
 		this.nodes = nodes;
 	}
 
-	public String toString(String name)
+	/**
+	 * Returns a String representation of all nodes with the distances in the middle.
+	 * @return a String representation of all nodes
+	 */
+	public String toStringNodesDistances()
 	{
-		String str = name + ": ";
+		String way = "";
 		for (int i = 0 ; i < nodes.size() ; i++)
 		{
 			if(nodes.get(i) instanceof Station)
 			{
-				str += (" --" + UtilCalc.round(distances.get(i), 2) + "-- " + ((Station)(nodes.get(i))).getName());
+				way += (" --" + UtilCalc.round(distances.get(i), 2) + "-- " + ((Station)(nodes.get(i))).getName());
 			}
 			else
 			{
-				str += (" --" + UtilCalc.round(distances.get(i), 2) + "-- " + ((Semaphore)(nodes.get(i))).getID());
+				way += (" --" + UtilCalc.round(distances.get(i), 2) + "-- " + ((Semaphore)(nodes.get(i))).getId());
 			}
 		}
 		
-		return str;
+		return way;
 	}
 	
 	@Override
@@ -106,6 +108,4 @@ public class Way implements Serializable {
 		return "Way [ distances = " + distances + ", nodes = "
 				+ nodes + "]";
 	}
-	
-	
 }

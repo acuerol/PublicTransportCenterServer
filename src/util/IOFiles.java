@@ -25,7 +25,7 @@ import model.Way;
 public class IOFiles {
 	
 	/**
-	 * Load a file with a specific format and return a list with all roads readed in the file.
+	 * Load a file with a specific format and return a list with all roads read in the file.
 	 * @param pathName the file path in the disk.
 	 * @return the list of all roads.
 	 * @exception IOException error reading the file.
@@ -83,9 +83,8 @@ public class IOFiles {
 	}
 	
 	/**
-	 * Load a file with a specific format and return a list with all routes readed in the file.
+	 * Load a file with a specific format and return a list with all routes read in the file.
 	 * @param pathName the file path in the disk.
-	 * @param ptc The PublicTransportCenter instance for get the stations.
 	 * @return the list of all routes.
 	 */
 	public static ArrayList<Route> loadRoute(String pathName)
@@ -135,7 +134,7 @@ public class IOFiles {
 	}
 	
 	/**
-	 * Load a file with a specific format and return a list with all semaphores readed in the file.
+	 * Load a file with a specific format and return a list with all semaphores read in the file.
 	 * @param pathName the file path in the disk.
 	 * @return the list of all semaphores.
 	 * @exception IOException error reading the file.
@@ -189,7 +188,7 @@ public class IOFiles {
 	}
 	
 	/**
-	 * Load a file with a specific format and return a list with all stations readed in the file.
+	 * Load a file with a specific format and return a list with all stations read in the file.
 	 * @param pathName the file path in the disk.
 	 * @return the list of all stations.
 	 * @exception IOException error reading the file. 
@@ -262,7 +261,7 @@ public class IOFiles {
 	 * Write a file from a ArrayList<String>.
 	 * @param lines The lines to be write in the file. 
 	 * @param pathName The file route in the disk.
-	 * @return true if the file was writed succefully.
+	 * @return true if the file was written successfully.
 	 */
 	public static boolean writeFile(ArrayList<String> lines, String pathName)
 	{
@@ -291,12 +290,12 @@ public class IOFiles {
 	}
 	
 	/**
-	 * Write a file with the clean roads data extracted of tke kml file, this create a new format for the data reading.
+	 * Write a file with the clean roads data extracted of the kml file, this create a new format for the data reading.
 	 * @param pathName the file path in the disk.
 	 * @param names the list with all roads names.
 	 * @param coordinates the list with all reads coordinates.
 	 * @exception IOException error writing the file.
-	 * @return true if the file was writing succefully.
+	 * @return true if the file was writing successfully.
 	 */
 	public static boolean writeRoadsFile(String pathName, ArrayList<String> names, ArrayList<String> coordinates)
 	{
@@ -362,13 +361,13 @@ public class IOFiles {
 	}
 	
 	/**
-	 * Write a file with the clean stations data extracted of tke kml file, this create a new format for the data reading. 
+	 * Write a file with the clean stations data extracted of the kml file, this create a new format for the data reading. 
 	 * @param pathName the file path in the disk.
 	 * @param sNames the list with the all stations names.
 	 * @param sCoordinates the list with the all stations coordinates.
 	 * @param sStates the list with the all stations states.
 	 * @exception IOException error writing the file.
-	 * @return true if the file was writing succefully.
+	 * @return true if the file was writing successfully.
 	 */
 	public static boolean writeStationsFile(String pathName, ArrayList<String> sNames, ArrayList<String[]> sCoordinates, ArrayList<String> sStates)
 	{
@@ -403,6 +402,11 @@ public class IOFiles {
 		return true;
 	}
 	
+	/**
+	 * Reads a file and return a ArrayList<String> with the lines in the file. 
+	 * @param pathName the path of the file.
+	 * @return a ArrayList<String> with the lines in the file.
+	 */
 	public static ArrayList<String> readFile(String pathName)
 	{
 		File file = new File(pathName);

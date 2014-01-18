@@ -30,14 +30,15 @@ public class CentralSystem {
 	private BusesWindowController busesWindowController;
 	private RefreshTableThread refreshTableThread;
 	private SemaphoresStateThread semaphoresStateThread;
-	private PublicTransportCenter pTC;
 	
 	private static CentralSystem centralSystem;
 	
+	/**
+	 * CentralSystem constructor with the JFrame apareance.
+	 */
 	private CentralSystem() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
-//		pTC = PublicTransportCenter.getPublicTransportCenter();
 	}
 	
 	/**
@@ -139,7 +140,7 @@ public class CentralSystem {
 	}
 	
 	/**
-	 * Creates the thread that handle the updating of the busesWindow JTable for show the informatioj about
+	 * Creates the thread that handle the updating of the busesWindow JTable for show the information about
 	 * the buses in the system. 
 	 */
 	public void createRefreshTableThread() {
@@ -172,7 +173,7 @@ public class CentralSystem {
 	 */
 	public PublicTransportCenter generateNewSystem() {
 		
-		pTC = PublicTransportCenter.getPublicTransportCenter();
+		PublicTransportCenter pTC = PublicTransportCenter.getPublicTransportCenter();
 		
 		for (Bus bus : pTC.getBuses())
 		{

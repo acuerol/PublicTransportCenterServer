@@ -1,7 +1,5 @@
 package controller.connectionWindow;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -9,32 +7,38 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
 import view.connectionWindow.ButtonsJP;
-import contrib.ch.randelshofer.quaqua.colorchooser.ColorWheelChooser;
+import view.connectionWindow.ConnectionWindowJF;
 import controller.CentralSystem;
 
+/**
+ * @author Alexis Cuero Losada
+ * This class implements MouseListener for handle the event on the JButtons in the {@link ConnectionWindowJF}.  
+ */
 public class ConnectionWindowJButtonsML implements MouseListener {
 
 	private ConnectionWindowController connectionWindowController;
-	private CentralSystem centralSystem;
-	private ButtonsJP buttonsJP;
 	
-	public ConnectionWindowJButtonsML()
-	{
-		centralSystem = CentralSystem.getCentralSystem();
-		connectionWindowController = centralSystem.getControllerConnectionWindow();
-		buttonsJP = connectionWindowController.getConnectionWindow().getButtonsJP();
+	/**
+	 * Creates a listener for the buttons on ConnectionWindowJF.
+	 */
+	public ConnectionWindowJButtonsML() {
+		connectionWindowController = CentralSystem.getCentralSystem().getControllerConnectionWindow();
 	}
 
-	public void start()
-	{
+	/**
+	 * Test.
+	 * Method for start the connection automatically.
+	 */
+	public void start() {
 		connectionWindowController.startListenInitialValuesRequest();
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent event) {
-		
+		CentralSystem centralSystem = CentralSystem.getCentralSystem();
 		JToggleButton sourceJTB = new JToggleButton();
 		JButton sourceJB = new JButton();
+		ButtonsJP buttonsJP = connectionWindowController.getConnectionWindow().getButtonsJP();
 		
 		if(event.getSource() instanceof JButton)
 		{

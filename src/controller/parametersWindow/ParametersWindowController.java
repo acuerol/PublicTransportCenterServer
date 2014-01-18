@@ -10,27 +10,33 @@ import model.Road;
 import model.Route;
 import model.Semaphore;
 import model.Station;
-import model.Way;
 import util.Alert;
 import util.CleanData;
 import util.IOFiles;
 import util.Util;
+import view.windowParameters.ButtonsJP;
+import view.windowParameters.MainJP;
 import view.windowParameters.ParametersWindowJF;
 import controller.CentralSystem;
 
 /**
- * 
  * @author Alexis Cuero Losada
- *
+ * Abstract class for control the {@link ParametersWindowJF} and set the initial values to the {@link CentralSystem}.
  */
 public class ParametersWindowController {
 
 	private ParametersWindowJF parametersWindow;
 	
+	/**
+	 * Constructor that creates the a {@link ParametersWindowJF} instance.
+	 */
 	public ParametersWindowController() {
 		parametersWindow = new ParametersWindowJF();
 	}
 	
+	/**
+	 * Sets the MouseListener to the JButtons and JTextFields in the {@link ButtonsJP} and {@link MainJP}.
+	 */
 	public void setMouseListener()
 	{
 		ParametersWindowJButtonsML  parametersWindowJButtonML = new ParametersWindowJButtonsML();
@@ -39,13 +45,16 @@ public class ParametersWindowController {
 		parametersWindow.setButtonsMouseListener(parametersWindowJButtonML);
 		parametersWindow.setJTextFieldMouseListener(parametersWindowJTextFieldML);
 
-		parametersWindowJButtonML.loadAll();
-	}
-
-	public ParametersWindowJF getWindowParameters() {
-		return parametersWindow;
+//		parametersWindowJButtonML.loadAll();
 	}
 	
+	/**
+	 * Open a FileChooser for select the file or files. 
+	 * @param text the text to show in the FileChooser
+	 * @param extensions the extensions for filter the files
+	 * @param multiSelection if more than one file can be selected
+	 * @return if the multiSeleccion is false return the file else the absolutePaths of files.
+	 */
 	public String openFileChooser(String text, String extensions, boolean multiSelection)
 	{
 		int seletedOption = 0;
@@ -71,9 +80,17 @@ public class ParametersWindowController {
 		return "";
 	}
 	
+	/**
+	 * Method for clean and load the initial files, routes, stations, roads and semaphore.
+	 * Returns true if all was load successfully, else false. 
+	 * @param roadsPath the pathName of the file with extension .kml for clean the file and then load the roads.
+	 * @param stationsPath the pathName of the file with extension .kml for clean the file and then load the stations.
+	 * @param semaphoresPath the pathName of the file with extension .kml for clean the file and then load the semaphores.
+	 * @param routesPaths the pathsNames of the files with extension .text for clean the files and then load all routes.
+	 * @return true if all was load successfully, else false.
+	 */
 	public boolean loadFiles(String roadsPath, String stationsPath, String semaphoresPath, String[] routesPaths)
 	{
-		PublicTransportCenter pTC = PublicTransportCenter.getPublicTransportCenter();
 		boolean valGeneral = true;
 		boolean valRoads = true;
 		boolean valSemaphores = true;
@@ -154,31 +171,19 @@ public class ParametersWindowController {
 		
 		if(valSemaphores && valStations && valRoads && valRoutes && valGeneral)
 		{
-			//Alert.launchInfoMessage("The system was loaded.", parametersWindow);
-			
-//			for (Route route: pTC.getRoutes()) {
-//				Way way = route.getWay();
-//				for (Object obj : way.getNodes()) {
-//					System.out.println();
-//					if(obj instanceof Station)
-//					{
-//						System.out.print(((Station)(obj)).getName());
-//						System.out.print("  -  ");
-//					}
-//					else
-//					{
-//						System.out.print(((Semaphore)(obj)).getID());
-//						System.out.print("  -  ");
-//					}
-//				}
-//				System.out.println();
-//			}
-//			PublicTransportCenter.setPublicTransportCenter(pTC);
 			return true;
 		}
 		
 		Alert.launchErrorMessage(error, parametersWindow);
 		
 		return false;
+	}
+	
+	/**
+	 * Returns the {@link ParametersWindowJF} instance created in this class.
+	 * @return the {@link ParametersWindowJF} instance;
+	 */
+	public ParametersWindowJF getWindowParameters() {
+		return parametersWindow;
 	}
 }

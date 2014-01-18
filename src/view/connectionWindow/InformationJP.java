@@ -4,16 +4,24 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * @author Alexis Cuero Losada
+ * This class extends of JPanel is used for contain the JTextArea for report the initial values request state.  
+ */
 public class InformationJP extends JPanel {
+	
+	private static final long serialVersionUID = 7943850060131601381L;
 	
 	private JTextArea informationJTA;
 	private JScrollPane informationJSP;
 	
+	/**
+	 * Constructor that set elements into the this JPanel.
+	 */
 	public InformationJP() {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout());
@@ -33,14 +41,11 @@ public class InformationJP extends JPanel {
 		add(informationJSP, BorderLayout.CENTER);
 	}
 	
-	public void setInformationText(String text)
+	/**
+	 * @return the informationJTA instance.
+	 */
+	public JTextArea getInformationJTA()
 	{
-		informationJTA.setText(text);
+		return informationJTA;
 	}
-	
-	public void addInformationText(String text)
-	{
-		informationJTA.setText(informationJTA.getText() + "\n" + text);
-	}
-
 }

@@ -1,32 +1,46 @@
 package controller.connectionWindow;
 
-import java.awt.event.ActionListener;
-
-import controller.CentralSystem;
 import view.connectionWindow.ConnectionWindowJF;
+import controller.CentralSystem;
 
+/**
+ * @author Alexis Cuero Losada
+ * Controller for the connection window.
+ */
 public class ConnectionWindowController {
 
-	private CentralSystem centralSystem;
-	private ConnectionWindowJF connectionWindow;
-	
+	private ConnectionWindowJF connectionWindowJF;
+
+	/**
+	 * Creates a ConnectionWindowController instance for manage the
+	 * mainWindowbuttons listener.
+	 */
 	public ConnectionWindowController() {
-		centralSystem = CentralSystem.getCentralSystem();
-		centralSystem.createConnectionThread();
-		connectionWindow = new ConnectionWindowJF();
+		CentralSystem.getCentralSystem().createConnectionThread();
+		connectionWindowJF = new ConnectionWindowJF();
 	}
 	
-	public void startListenInitialValuesRequest()
-	{
-		centralSystem.startListenInitialValuesRequest();
-	}
-	
+	/**
+	 * Return the {@link ConnectionWindowJF} instance create in this class.
+	 * @return the {@link ConnectionWindowJF} instance
+	 */
 	public ConnectionWindowJF getConnectionWindow()
 	{
-		return connectionWindow;
+		return connectionWindowJF;
+	}
+	
+	/**
+	 * Starts the thread that handle the request for initial values.
+	 */
+	public void startListenInitialValuesRequest()
+	{
+		CentralSystem.getCentralSystem().startListenInitialValuesRequest();
 	}
 
+	/**
+	 * Interrupts the thread that handle the request for initial values.
+	 */
 	public void pauseListenInitialValuesRequest() {
-		centralSystem.pauseListenInitialValuesRequest();
+		CentralSystem.getCentralSystem().pauseListenInitialValuesRequest();
 	}
 }

@@ -1,26 +1,19 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import util.UtilCalc;
 
 /**
- * 
  * @author Alexis Cuero Losada
- * 
+ * Abstracts the real world buses with attributes as the id, the driver, plate, position, speed...
  */
 public class Bus implements Serializable, Comparable<Bus> {
 
-	public static final int STATION_STOP_TIME = 8;
-
-	/**
-	 * The Bus serialVersionUID
-	 */
 	private static final long serialVersionUID = 6817328659194233831L;
+	
 	private Driver driver;
 	private String id;
 	private Station nextStopStation;
@@ -42,23 +35,17 @@ public class Bus implements Serializable, Comparable<Bus> {
 	 * @param id
 	 *            an identifier for the Bus instance
 	 * @param driver
-	 *            a Driver instance asociated
+	 *            a Driver instance associated
 	 * @param plate
 	 *            the plate of the Bus instance
 	 * @param route
 	 *            the actual route of the Bus instance
 	 * @param speed
-	 *            the magnitude of speed asoacited to the Bus instance
+	 *            the magnitude of speed associated to the Bus instance
 	 * @param position
-	 *            the actual point in the plane Bus asociated
-	 * @param startTime
-	 *            the time sicen it was added to the simulation
-	 * @param nextStopTime
-	 *            the time associated until the next stop
+	 *            the actual point in the plane Bus associated
 	 * @param state
 	 *            if the Bus is nice or it is damaged
-	 * @param nextStopStation
-	 *            the next node associated to the route
 	 */
 	public Bus(String id, Driver driver, String plate, Route route, int speed,
 			double position, boolean state) {
@@ -108,22 +95,34 @@ public class Bus implements Serializable, Comparable<Bus> {
 		this.acceleration = acceleration;
 	}
 
+	/**
+	 * Sets the start time.
+	 * @param calendar the start time.
+	 */
 	public void setStartTime(Calendar calendar) {
 		this.startTime = calendar;
 	}
 
+	/**
+	 * Returns the movement state of the bus.
+	 * @return the movement state of the bus.
+	 */
 	public int getMovementState() {
 		return movementState;
 	}
 
+	/**
+	 * Sets the movement state of the bus.
+	 * @param movementState the new movement state of the bus.
+	 */
 	public void setMovementState(int movementState) {
 		this.movementState = movementState;
 	}
 
 	/**
-	 * Returns a Driver instance bus asociated.
+	 * Returns a Driver instance bus associated.
 	 * 
-	 * @return the Driver instace
+	 * @return the Driver instance
 	 */
 	public Driver getDriver() {
 		return driver;
@@ -280,6 +279,10 @@ public class Bus implements Serializable, Comparable<Bus> {
 		this.state = state;
 	}
 
+	/**
+	 * Returns a Object[] representation of the bus with the main attributes.
+	 * @return Object[] representation of the bus
+	 */
 	public Object[] toArray() {
 		if (nextStopStation != null && driver != null) {
 			Object[] array = {id, driver.getName() + driver.getLastName(),
@@ -297,20 +300,32 @@ public class Bus implements Serializable, Comparable<Bus> {
 						UtilCalc.round(acceleration, 2)};
 				return array;
 			} else {
-				Object[] array = {id, "Not asigned", plate, route.getName(),
-						nextStopStation.getName(), state,
-						UtilCalc.round(speed * 3.6, 2),
-						UtilCalc.round(position, 2), nextNode, movementState,
-						UtilCalc.round(acceleration, 2)};
-				return array;
+				if(nextStopStation != null) {
+					Object[] array = {id, "Not asigned", plate, route.getName(),
+							nextStopStation.getName(), state,
+							UtilCalc.round(speed * 3.6, 2),
+							UtilCalc.round(position, 2), nextNode, movementState,
+							UtilCalc.round(acceleration, 2)};
+					return array;
+				}
 			}
 		}
+		
+		return null;
 	}
-
+	
+	/**
+	 * Returns the bus nextNode at the road. 
+	 * @return the bus nextNode
+	 */
 	public Object getNextNode() {
 		return nextNode;
 	}
 
+	/**
+	 * Sets the bus nextNode at the road. 
+	 * @param nextNode the bus nextNode.
+	 */
 	public void setNextNode(Object nextNode) {
 		this.nextNode = nextNode;
 	}

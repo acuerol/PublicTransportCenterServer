@@ -8,11 +8,23 @@ import model.PublicTransportCenter;
 import model.Semaphore;
 import model.Station;
 
+/**
+ * @author Alexis Cuero Losada
+ * This abstract class offer different methods for update the buses movement state, acceleration, next node and 
+ * next stop station.
+ */
 public class UpdateBuses {
 
+	/**
+	 * The station for the buses out of the roads.
+	 */
 	public static final Station UNKNOWED = new Station("Unknowed", new Point2D.Double(), false); 
-	public static final double STOP_TOLERANCE = 2e-2;
 	
+	/**
+	 * Returns the next node (semaphore or station) in the bus route.
+	 * @param bus the bus for search the next node
+	 * @return the bus next node
+	 */
 	public static Object getNextNode(Bus bus) {	
 		double busDistance = bus.getPosition();
 		ArrayList<Double> distances = bus.getRoute().getWay().getDistances();
@@ -29,13 +41,20 @@ public class UpdateBuses {
 		return UNKNOWED;
 	}
 	
-	public static Object getNextNode(Bus bus, double nodeDistance) {
+	/**
+	 * Returns the next node (semaphore or station) in the bus route based in a distance.
+	 * This method allow get the next node in any distance
+	 * @param bus the bus for search the next node
+	 * @param lastNodeDistance the distance of last node
+	 * @return the bus next node
+	 */
+	public static Object getNextNode(Bus bus, double lastNodeDistance) {
 		ArrayList<Double> distances = bus.getRoute().getWay().getDistances();
 		ArrayList<Object> nodes = bus.getRoute().getWay().getNodes();
 		
 		for (int i = 0 ; i < distances.size() - 1 ; i++)
 		{
-			if(distances.get(i) <= nodeDistance && distances.get(i+1) > nodeDistance)
+			if(distances.get(i) <= lastNodeDistance && distances.get(i+1) > lastNodeDistance)
 			{
 				return nodes.get(i+1);
 			}
@@ -44,6 +63,10 @@ public class UpdateBuses {
 		return UNKNOWED;
 	}
 	
+	/**
+	 * @param bus the bus to search the next stop station.
+	 * @return Returns the next stop station in the bus route.
+	 */
 	public static Station getNextStopStation(Bus bus) {
 		double busDistance = bus.getPosition();
 		ArrayList<Double> distances = bus.getRoute().getWay().getDistances();
@@ -71,6 +94,11 @@ public class UpdateBuses {
 		return UNKNOWED;
 	}
 	
+	/**
+	 * Returns the List of next four nodes of a bus.
+	 * @param bus The bus for search the next four nodes
+	 * @return The next four nodes
+	 */
 	public static ArrayList<Object> getNextFourNodes(Bus bus) {
 		ArrayList<Object> nextFourNodes = new ArrayList<Object>(4);
 		
@@ -111,6 +139,13 @@ public class UpdateBuses {
 		return Double.NaN;
 	}
 
+	/**
+	 * Returns the optimal acceleration of a bus.
+	 * It is based on {@link PhysicalCalculations} class and decide the best option supported 
+	 * by the estimates obtained thus keeps the system balanced.
+	 * @param bus
+	 * @return Returns the optimal acceleration of a bus.
+	 */
 	public static double getOptimalAcceleration(Bus bus) {		
 		PublicTransportCenter pTC = PublicTransportCenter.getPublicTransportCenter();
 		
@@ -130,7 +165,7 @@ public class UpdateBuses {
 					int index = pTC.getSemaphores().indexOf(nextNode);
 					nextNode = pTC.getSemaphores().get(index);
 					Semaphore semaphore = ((Semaphore)(nextNode));
-					int avaibleTime = PhysicalCalculations.getTimeAvaible(semaphore);
+					int availableTime = PhysicalCalculations.getTimeAvailable(semaphore);
 					
 					if(semaphore.getState())
 					{
@@ -142,11 +177,11 @@ public class UpdateBuses {
 					
 					if(bus.getMovementState() != -2 && bus.getMovementState() != -1 && bus.getMovementState() != 0)
 					{
-						if(avaibleTime > 0)
+						if(availableTime > 0)
 						{
 //							System.out.println("The Semaphore is green.");
 							
-							switch (PhysicalCalculations.conditionToPassInGreen(bus, nodeDistance, avaibleTime))
+							switch (PhysicalCalculations.conditionToPassInGreen(bus, nodeDistance, availableTime))
 							{
 							case 1:
 //								bus.setMovementState(1);
@@ -167,7 +202,7 @@ public class UpdateBuses {
 								if(bus.getSpeed() < PhysicalCalculations.MAX_SPEED)
 								{
 //									System.out.println("Green accelerating for pass.");
-									return PhysicalCalculations.bestAcceleration(bus, nodeDistance, avaibleTime);
+									return PhysicalCalculations.bestAcceleration(bus, nodeDistance, availableTime);
 								}
 //								System.out.println("Very fast.");
 								
@@ -180,7 +215,7 @@ public class UpdateBuses {
 						} else 
 						{
 							System.out.println("The semaphore is red.");
-							avaibleTime *= -1;
+							availableTime *= -1;
 
 							if(bus.getMovementState() != 0 && bus.getMovementState() != -1)
 							{
@@ -387,18 +422,5 @@ public class UpdateBuses {
 //		System.out.println("Last.");
 		bus.setMovementState(1);
 		return 0;
-	}
-	
-	public static Object getStopNode(Bus bus) {
-		
-		if(bus.getSpeed() < 1)
-		{
-			if(getNodeDistance(bus) < STOP_TOLERANCE)
-			{
-				return bus.getNextNode();
-			}
-		}
-		
-		return "Is running";
 	}
 }

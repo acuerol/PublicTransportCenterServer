@@ -4,14 +4,11 @@ import java.awt.geom.Point2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import util.CleanData;
-import util.IOFiles;
 import util.UtilCalc;
 
 /**
- * 
  * @author Alexis Cuero Losada
- *
+ * The most important class in the system, is related with all other classes.
  */
 public class PublicTransportCenter implements Serializable {
 	
@@ -42,11 +39,19 @@ public class PublicTransportCenter implements Serializable {
 	private ArrayList<Station> stations;
 	private ArrayList<Way> ways;
 	
+	/**
+	 * Adds a bus to the ArrayList<Bus> buses. 
+	 * @param bus the bus to add.
+	 */
 	public void addBus(Bus bus)
 	{
 		buses.add(bus);
 	}
 	
+	/**
+	 * Adds a driver to the ArrayList<Driver> drivers. 
+	 * @param driver the driver to add.
+	 */
 	public void addDriver(Driver driver)
 	{
 		drivers.add(driver);
@@ -65,21 +70,38 @@ public class PublicTransportCenter implements Serializable {
 		search = new Search();
 	}
 	
+	/**
+	 * Sets the all system with the receive as parameter.
+	 * @param pTC the system to set.
+	 */
 	public static synchronized void setPublicTransportCenter(PublicTransportCenter pTC)
 	{
 		PublicTransportCenter.pTC = pTC;
 	}
 	
+	/**
+	 * Sets only the semaphores to the system.
+	 * @param pTC the system to extract semaphores.
+	 */
 	public static synchronized void refreshSemaphores(PublicTransportCenter pTC)
 	{
 		PublicTransportCenter.pTC.setSemaphores(pTC.getSemaphores());
 	}
 	
+	/**
+	 * Sets only the buses to the system.
+	 * @param pTC the system to extract buses.
+	 */
 	public static synchronized void refreshBuses(PublicTransportCenter pTC)
 	{
 		PublicTransportCenter.pTC.setBuses(pTC.getBuses());
 	}
 	
+	/**
+	 * Sets only some parameters of the system acceleration, movement state, nextStopStation
+	 * nextNode, routes and semaphores. If a bus was added will be added too to this system.
+	 * @param pTC the system to extract some parameters.
+	 */
 	public static synchronized void refreshBusesFromServer(PublicTransportCenter pTC)
 	{
 		ArrayList<Bus> buses = pTC.getBuses();
@@ -105,6 +127,11 @@ public class PublicTransportCenter implements Serializable {
 		PublicTransportCenter.pTC.setSemaphores(pTC.getSemaphores());
 	}
 	
+	/**
+	 * Sets the attributes that change in the server to this system (speed, position, movementState, stopTime
+	 * state).
+	 * @param pTC
+	 */
 	public static synchronized void refreshBusesFromClient(PublicTransportCenter pTC)
 	{
 		ArrayList<Bus> buses = pTC.getBuses();
@@ -143,12 +170,18 @@ public class PublicTransportCenter implements Serializable {
 	}	
 	
 	/**
-	 * @param ways the ways to set
+	 * Adds a way to the list of the system.
+	 * @param way the ways to set
 	 */
 	public void addWay(Way way) {
 		ways.add(way);
 	}
 	
+	/**
+	 * Returns the List with all buses that have the route.
+	 * @param route the route for filter the buses.
+	 * @return the List with all buses that have the route
+	 */
 	public ArrayList<Bus> getBusesByRoute(Route route) {
 		ArrayList<Bus> busesByRoute = new ArrayList<Bus>();
 		for (Bus bus : buses) {
@@ -461,6 +494,11 @@ public class PublicTransportCenter implements Serializable {
 				+ semaphores + ", drivers = " + drivers + ", roads = " + roads + "]";
 	}
 
+	/**
+	 * Returns a bus instance from the id
+	 * @param id the id for compare with the buses at the system.
+	 * @return a bus instance from the id
+	 */
 	public Bus getBusByID(String id) {
 		for (Bus bus : buses) {
 			if(bus.getId().equals(id))
@@ -472,11 +510,17 @@ public class PublicTransportCenter implements Serializable {
 		return null;
 	}
 
+	/**
+	 * Add a list of the nodes to the graph.
+	 */
 	public void addListNode() {
 		graph.addListNode(semaphores);
 		graph.addListNode(stations);
 	}
 
+	/**
+	 * Adds a edge to all roads.
+	 */
 	public void addListBidirectionalEdge() {
 		graph.addListBidirectionalEdge(roads);
 	}

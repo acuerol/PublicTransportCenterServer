@@ -1,33 +1,32 @@
 package controller.threads;
 
 
+import view.busesWindow.TableJP;
 import controller.CentralSystem;
-import model.PublicTransportCenter;
 
-public class RefreshTableThread extends Thread{
+/**
+ * @author Alexis Cuero Lsoada
+ * This class extends of Thread and is used for update the {@link TableJP} JTable.  
+ */
+public class RefreshTableThread extends Thread {
 
-	private CentralSystem centralSystem;
-	private PublicTransportCenter pTC;
 	private boolean interrupt;
-	
-	public RefreshTableThread() {
-		centralSystem = CentralSystem.getCentralSystem();
-		pTC = PublicTransportCenter.getPublicTransportCenter(); 
-		System.out.println("RefreshTableThread running...");
-	}
-	
+		
 	@Override
 	public void run() {
+		System.out.println("RefreshTableThread running...");
 		refreshTable();
 	}
 	
 	private void refreshTable()
 	{
+		CentralSystem centralSystem;
 		int seletedRow = 0;
 		interrupt = false;
 		
 		while (true)
 		{
+			centralSystem = CentralSystem.getCentralSystem();
 			seletedRow = centralSystem.getBusesWindowController().getBusesWindow().getTableJP().getBusesJT().getSelectedRow();
 			centralSystem.getBusesWindowController().refreshTable(seletedRow);
 			try {
@@ -52,6 +51,9 @@ public class RefreshTableThread extends Thread{
 		}
 	}
 	
+	/**
+	 * Interrupts of update the table in {@link TableJP}.
+	 */
 	public void setInterrupt()
 	{
 		interrupt = true;

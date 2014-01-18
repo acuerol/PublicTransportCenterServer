@@ -5,14 +5,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * 
  * @author Alexis Cuero Losada
- *
+ * Abstracts the real world semaphores.
  */
 public class Semaphore implements Serializable {
-	/**
-	 * The Semaphore serialVersionUID
-	 */
+
 	private static final long serialVersionUID = 8286679660561586733L;
 	private ArrayList<Object> children;
 	private String id;
@@ -38,14 +35,26 @@ public class Semaphore implements Serializable {
 		this.timeGreen = timeGreen;
 	}
 	
-    public String getId() {
+	/**
+	 * Returns the semaphore id.
+	 * @return the semaphore id.
+	 */
+	public String getId() {
 		return id;
 	}
 
-    public void setState(boolean state) {
+	/**
+	 * Sets the semaphore state true = green, false = re .
+	 * @param state the semaphore state.
+	 */
+	public void setState(boolean state) {
 		this.state = state;
 	}
 
+	/**
+	 * The timer that count the seconds for change the state.
+	 * @param time the actual time at the semaphore.
+	 */
 	public void setTime(int time) {
 		this.time = time;
 	}
@@ -97,15 +106,6 @@ public class Semaphore implements Serializable {
 	public ArrayList<Object> getChildNodes()
 	{
 		return children;
-	}
-	
-	/**
-     * Returns the semaphore id.
-     * @return the semaphore id. 
-     */
-    public String getID()
-	{
-		return id;
 	}
 	
 	/**

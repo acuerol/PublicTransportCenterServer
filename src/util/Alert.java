@@ -4,9 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * 
  * @author Alexis Cuero Losada
- *
+ * This class is use for generate error and information alerts.
  */
 public class Alert {
 
